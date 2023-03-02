@@ -1,21 +1,51 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { React, useState } from 'react'
+import { React, useEffect, useState } from 'react'
+import validator from 'validator'
+const zxcvbn = require('zxcvbn') 
 
 const Register = () => {
     const navigate = useNavigate();
-    const [userName, setUserName] = useState("");
-    const [pwd, setPwd] = useState("");
-    const [repeatedPwd, setRepeatedPwd] = useState("");
-    const [email, setEmail] = useState("");
+    const [userName, setUserName] = useState();
+    const [pwd, setPwd] = useState();
+    const [repeatedPwd, setRepeatedPwd] = useState();
+    const [email, setEmail] = useState();
     const [err, setErr] = useState();
+    const [weakPwdErr, setWeakPwdErr] = useState();
+    const [pwdErr, setPwdErr] = useState();
+    const [ok, setOk] = useState(false);
+
+    const checkPassword = () =>{
+        if(pwd){
+            document.getElementById("pwd_strength").setAttribute("value", zxcvbn(pwd).score)
+        if(zxcvbn(pwd).score<3){
+            setWeakPwdErr("Password is weak");
+        }
+        else{
+            setWeakPwdErr("");
+        }
+        if(pwd != repeatedPwd){
+            setPwdErr("No match");
+        }
+        else{
+            setPwdErr("");
+        }
+        }
+        
+    }
+
+    useEffect(checkPassword,[pwd,repeatedPwd])
+    useEffect(()=>{
+        if(err=="" && weakPwdErr=="" && pwdErr==""){
+            setOk(true);
+        }
+            
+    },[err,weakPwdErr,pwdErr])
+
+const checkEmail = ()=>{
+    validator.isEmail(email)?setErr(""):setErr("Email address is not valid");
+}
+
     const Register = async () => {
-        if (userName.length < 2 || pwd.length < 8 || email.length < 5) {
-            alert("not all fields are ok. we didn't finish working on it. sorry.")
-        }
-        if (pwd != repeatedPwd) { 
-            alert("password is not good. we didn't finish working on it. sorry.")
-        }
-        else {
             const response = await fetch("http://localhost:3500/api/auth/SignUp", {
                 method: 'POST',
                 headers: {
@@ -42,31 +72,35 @@ const Register = () => {
                 console.log(err.message)
             }
         }
-    }
+    
     return (
-        <div class="sign-up-htm">
-            <div class="group">
-                <label for="user" class="label">Username</label>
-                <input id="user" type="text" class="input" onChange={(e) => { setUserName(e.target.value) }} />
+        <div className="sign-up-htm">
+            <div className="group">
+                <label for="user" className="label">Username</label>
+                <input id="user" type="text" className="input" onChange={(e) => { setUserName(e.target.value) }} />
             </div>
-            <div class="group">
-                <label for="pass" class="label">Password</label>
-                <input id="pass" type="password" class="input" data-type="password" onChange={(e) => { setPwd(e.target.value) }} />
+            <div className="group">
+                <label for="pass" className="label">Password</label>
+                <input id="pass" type="password" className="input" data-type="password" onKeyUp={(e)=>{setPwd(e.target.value)}}/>
+                <progress value={0} max={4} id="pwd_strength">0%</progress>
+                {weakPwdErr && <><span style={{color:'red'}}>{weakPwdErr}</span><br/><br/></>}
             </div>
-            <div class="group">
-                <label for="pass" class="label">Repeat Password</label>
-                <input id="pass" type="password" class="input" data-type="password" onChange={(e) => { setRepeatedPwd(e.target.value) }} />
+            <div className="group">
+                <label for="pass" className="label">Repeat Password</label>
+                <input id="pass" type="password" className="input" data-type="password" onKeyUp={async (e)=>{await setRepeatedPwd(e.target.value)}}/>
+                {pwdErr && <><span style={{color:'red'}}>{pwdErr}</span><br/><br/></>}
+
             </div>
-            <div class="group">
-                <label for="pass" class="label">Email Address</label>
-                <input id="pass" type="email" class="input" onChange={(e) => { setEmail(e.target.value) }} />
+            <div className="group">
+                <label for="pass" className="label">Email Address</label>
+                <input id="pass" type="email" className="input" onChange={(e) => { setEmail(e.target.value) }} onBlur={checkEmail}/>
             </div>
-            {err && <span>{err}</span>}
-            <div class="group">
-                <input type="submit" class="button" value="Sign Up" onClick={Register} />
+            {err && <><span style={{color:'red'}}>{err}</span><br/><br/></>}
+            <div className="group">
+                <input id="signUpBtn" type="submit" className="button" value="Sign Up" onClick={Register} disabled={!ok}/>
             </div>
-            <div class="hr"></div>
-            <div class="foot-lnk">
+            <div className="hr"></div>
+            <div className="foot-lnk">
                 <label for="tab-1">Already Member?</label>
             </div>
         </div>
