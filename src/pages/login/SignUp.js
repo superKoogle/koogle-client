@@ -3,7 +3,7 @@ import { React, useEffect, useState } from 'react'
 import validator from 'validator'
 const zxcvbn = require('zxcvbn') 
 
-const Register = () => {
+const SignUp = () => {
     const navigate = useNavigate();
     const [userName, setUserName] = useState();
     const [pwd, setPwd] = useState();
@@ -107,4 +107,4 @@ const checkEmail = ()=>{
     )
 }
 
-export default Register;
+export default SignUp;

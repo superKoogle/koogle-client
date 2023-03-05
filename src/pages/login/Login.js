@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {Link, useNavigate} from 'react-router-dom'
-import Register from './register'
-import SignIn from './signIn'
+import SignUp from './SignUp'
+import SignIn from './SignIn'
 import './login.css'
 
 const Login = () => {
@@ -13,7 +13,7 @@ const Login = () => {
 		<input id="tab-2" type="radio" name="tab" className="sign-up"/><label for="tab-2" className="tab">Sign Up</label>
 		<div className="login-form">
 			<SignIn />
-			<Register/>
+			<SignUp/>
 		</div>
 	</div>
 </div>
