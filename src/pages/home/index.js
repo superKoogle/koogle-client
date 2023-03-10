@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 //import Location from '.'
 import Location from './Location';
+import Results from './Results'
+import MyMapComponent from './Map/Map'
 
 const Home = () => {
   const [location, setLocation] = useState();
@@ -9,8 +11,9 @@ const Home = () => {
   return (
     <>
       <Location setLocation={setLocation} />
-      <span>{location}</span>
-      {/*<Results location={location}/>*/}
+       {/*<MyMapComponent isMarkerShown />
+     <MapWithAMarker></MapWithAMarker>*/}
+      {location && <Results location={location}/>}
     </>
 
   )

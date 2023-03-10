@@ -1,12 +1,13 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import * as React from 'react';
+import { useState, useEffect } from "react";
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 
-
-const Location = ({ setLocation }) => {
+export default function Location({ setLocation }) {
     const [address, setAddress] = useState();
-    const [suggestions, setSuggestions] = useState();
+    const [suggestions, setSuggestions] = useState([]);
     const getSuggestions = async () => {
-        if(!address)return;
+        if (!address) return;
         const response = await fetch('http://localhost:3500/api/maps/complete', {
             method: 'POST',
             headers: {
@@ -14,18 +15,23 @@ const Location = ({ setLocation }) => {
             },
             body: JSON.stringify({ text: address })
         })
-        if (response.ok) {
-            setSuggestions(await response.json());
+        if (response?.ok) {
+            const options = await response.json();
+            setSuggestions(options);
         }
     }
 
-    useEffect(()=>{getSuggestions()}, [address]);
-    //const p = ["yam suf", "yarmuch", "yamit"]
-    return (<><input placeholder="your location" onChange={e => setAddress(e.target.value)}></input>
-        <select onChange={e => {console.log(e.target.value);setLocation(e.target.value)}}>
-            {suggestions && suggestions.map(s => <option>{s.address}</option>)}
-            {/*p.map(s => <option>{s}</option>)*/}
-        </select></>)
+    useEffect(() => {getSuggestions() }, [address]);
+    return (
+        <>
+            <Autocomplete
+                style={{margin: "20px"}}
+                id="free-solo-demo"
+                freeSolo
+                options={suggestions.map((option) => option)}
+                onChange={e => {setLocation(e.target.innerHTML)}}
+                renderInput={(params) => <TextField {...params} label="Your location" onChange={e => setAddress(e.target.value)} />}
+            />    
+        </>
+    );
 }
-
-export default Location
