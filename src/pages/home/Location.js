@@ -8,7 +8,7 @@ export default function Location({ setLocation }) {
     const [suggestions, setSuggestions] = useState([]);
     const getSuggestions = async () => {
         if (!address) return;
-        const response = await fetch('http://localhost:3500/api/maps/complete', {
+        const response = await fetch('http://localhost:3500/api/maps/address', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -21,17 +21,17 @@ export default function Location({ setLocation }) {
         }
     }
 
-    useEffect(() => {getSuggestions() }, [address]);
+    useEffect(() => {getSuggestions()}, [address]);
     return (
         <>
             <Autocomplete
                 style={{margin: "20px"}}
                 id="free-solo-demo"
                 freeSolo
-                options={suggestions.map((option) => option)}
+                options={suggestions}
                 onChange={e => {setLocation(e.target.innerHTML)}}
                 renderInput={(params) => <TextField {...params} label="Your location" onChange={e => setAddress(e.target.value)} />}
-            />    
+            />
         </>
     );
 }

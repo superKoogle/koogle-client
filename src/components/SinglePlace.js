@@ -4,6 +4,8 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
+import Button from '@mui/material/Button';
+import CustomizedButton from './Button'
 
 const Img = styled('img')({
   margin: 'auto',
@@ -12,12 +14,17 @@ const Img = styled('img')({
   maxHeight: '100%',
 });
 
-export default function SinglePlace({ name, address, hours, img, type }) {
+export default function SinglePlace({ name, address, hours, img, type, setSelected }) {
 const place_type = 
     type == 1 ? "synagogue" :
     type == 2 ? "habad" :
     type == 3 ? "supermarket" :
     type == 4 ? "restaurant" : null;
+
+    const handleClick = (e)=>{
+      console.log(e.target);
+     setSelected(e.target.key);
+    }
 
   return (
     <Paper
@@ -56,9 +63,7 @@ const place_type =
             </Grid>
           </Grid>
           <Grid item>
-            <Typography variant="subtitle1" component="div">
-              {}
-            </Typography>
+          <CustomizedButton text={"View details"} onClick={(e)=>{handleClick(e)}}></CustomizedButton>
           </Grid>
         </Grid>
       </Grid>
