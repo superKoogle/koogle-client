@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 //import Location from '.'
 import Location from './Location';
 import Results from './Results'
-import MyComponent from './Map/Map'
+import Map from '../../components/Map'
 
 const Home = () => {
   const [location, setLocation] = useState();
@@ -12,12 +12,11 @@ const Home = () => {
     <>
       <Location setLocation={setLocation} />
       
-       {/*<MyMapComponent isMarkerShown />
+      {/*<MyMapComponent isMarkerShown />
      <MapWithAMarker></MapWithAMarker>*/}
-     {location && <MyComponent location={location}/>}
+      {location && <Map location={location} width={'400px'} height={'400px'}/>}
       {location && <Results location={location}/>}
     </>
-
   )
 }
 

@@ -2,10 +2,9 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-export default function Retaurant() {
 
-    //habad_intermediary, habad_phone, habad_site_link 
-
+export default function Restaurant({setRestaurantPhone,setRestaurantType,setRestaurantHechsher,setRestaurantSiteLink,setRestaurantStars}) {
+  
     return (
         <>
         <Box
@@ -19,21 +18,38 @@ export default function Retaurant() {
       <div>
         <TextField
           id="standard-helperText"
-          defaultValue="example@.co.il"
-          helperText="habad_site_link"
+          placeholder="example@.co.il"
+          helperText="phone"
           variant="standard"
+          onInput={(e)=>{setRestaurantPhone(e.target.value)}}
         />
         <TextField
           id="standard-helperText"
           defaultValue=""
-          helperText="habad_intermediary"
+          helperText="type"
           variant="standard"
+          onInput={(e)=>{setRestaurantType(e.target.value)}}
         />
         <TextField
           id="standard-helperText"
           defaultValue=""
-          helperText="habad_phone"
+          helperText="hechsher"
           variant="standard"
+          onInput={(e)=>{setRestaurantHechsher(e.target.value)}}
+        />
+        <TextField
+          id="standard-helperText"
+          defaultValue=""
+          helperText="site link"
+          variant="standard"
+          onInput={(e)=>{setRestaurantSiteLink(e.target.value)}}
+        />
+            <TextField
+          id="standard-helperText"
+          defaultValue=""
+          helperText="stars"
+          variant="standard"
+          onInput={(e)=>{setRestaurantStars(e.target.value)}}
         />
       </div>
     </Box>

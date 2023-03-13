@@ -1,0 +1,8 @@
+h4 {
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 100;
+    margin: auto;
+    background: -webkit-linear-gradient(-86deg, #0a085d 5%, #3e0d67 53%, #333a67 91%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }

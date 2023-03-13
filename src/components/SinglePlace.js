@@ -14,23 +14,18 @@ const Img = styled('img')({
   maxHeight: '100%',
 });
 
-export default function SinglePlace({ name, address, hours, img, type, setSelected }) {
-const place_type = 
-    type == 1 ? "synagogue" :
-    type == 2 ? "habad" :
-    type == 3 ? "supermarket" :
-    type == 4 ? "restaurant" : null;
+export default function SinglePlace({ name, address, hours, img, type, id, setSelected }) {
 
     const handleClick = (e)=>{
       console.log(e.target);
-     setSelected(e.target.key);
+     setSelected(id);
     }
 
   return (
     <Paper
       sx={{
         p: 2,
-        margin: 'auto',
+        margin: '20px auto',
         maxWidth: 500,
         flexGrow: 1,
         backgroundColor: (theme) =>
@@ -58,7 +53,7 @@ const place_type =
             </Grid>
             <Grid item>
               <Typography sx={{ cursor: 'pointer' }} variant="body2">
-                {place_type}
+                {type}
               </Typography>
             </Grid>
           </Grid>

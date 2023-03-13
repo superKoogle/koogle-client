@@ -2,10 +2,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-export default function Synagogue() {
-
-    //habad_intermediary, habad_phone, habad_site_link 
-
+export default function Synagogue({setNusach}) {
+ 
     return (
         <>
         <Box
@@ -19,21 +17,10 @@ export default function Synagogue() {
       <div>
         <TextField
           id="standard-helperText"
-          defaultValue="example@.co.il"
-          helperText="habad_site_link"
+          defaultValue="hasidish"
+          helperText="nusach"
           variant="standard"
-        />
-        <TextField
-          id="standard-helperText"
-          defaultValue=""
-          helperText="habad_intermediary"
-          variant="standard"
-        />
-        <TextField
-          id="standard-helperText"
-          defaultValue=""
-          helperText="habad_phone"
-          variant="standard"
+          onInput={(e)=>{setNusach(e.target.value)}}
         />
       </div>
     </Box>

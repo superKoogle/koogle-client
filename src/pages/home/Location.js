@@ -7,7 +7,7 @@ export default function Location({ setLocation }) {
     const [address, setAddress] = useState();
     const [suggestions, setSuggestions] = useState([]);
     const getSuggestions = async () => {
-        if (!address) return;
+        if (!address || address.startsWith("<")) return;
         const response = await fetch('http://localhost:3500/api/maps/address', {
             method: 'POST',
             headers: {

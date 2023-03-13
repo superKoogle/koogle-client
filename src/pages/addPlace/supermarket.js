@@ -2,9 +2,9 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-export default function Supermarket() {
 
-    //habad_intermediary, habad_phone, habad_site_link 
+
+export default function Supermarket({ setMarketPhone,setMarketSiteLink}) {
 
     return (
         <>
@@ -19,24 +19,20 @@ export default function Supermarket() {
       <div>
         <TextField
           id="standard-helperText"
-          defaultValue="example@.co.il"
-          helperText="habad_site_link"
+          helperText="phone"
           variant="standard"
+          onInput={(e)=>{setMarketPhone(e.target.value)}}
         />
         <TextField
           id="standard-helperText"
-          defaultValue=""
-          helperText="habad_intermediary"
+          placeholder='hhhh@co.il'
+          helperText="site link"
           variant="standard"
-        />
-        <TextField
-          id="standard-helperText"
-          defaultValue=""
-          helperText="habad_phone"
-          variant="standard"
+          onInput={(e)=>{setMarketSiteLink(e.target.value)}}
         />
       </div>
     </Box>
+    
     </> 
     );
 }

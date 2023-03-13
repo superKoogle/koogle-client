@@ -6,6 +6,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import './Results.css'
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -30,23 +31,26 @@ export default function Results({ location }) {
             body: JSON.stringify({ address:location, maxDistance:100000 })
         })
         if(response?.ok){
-            const places = await response.json();
+            const _places = await response.json();
+            const places = _places.map((p)=>{return {...p, type:p.place_type==1?'synagogue':p.place_type==2?'Beit habad':p.place_type==3?'Supermarket':'Restaurant'}})
             setResults(places);
-           // console.log(places);
+        }
+        else{
+          setResults([]);
         }
     }
 
     useEffect(()=>{getPlaces()}, [location])
-    useEffect(()=>{if(selected!=-1){navigate('/placeDetails', {state:{idx:selected,places:results}})}},[selected])
+    useEffect(()=>{if(selected!=-1){console.log(selected);navigate('/placeDetails', {state:{idx:selected,places:results}})}},[selected])
 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2} columns={4}>
-      {results.map((place, i) => {return <Grid item xs={4}>
+      {results.length>0 ? results.map((place, i) => {return <Grid item xs={4}>
 
-        <SinglePlace name={place.place_name} address={place.place_address} hours={place.place_hours} img={place.place_img} type={place.place_type} key={i} setSelected={setSelected}/>
+        <SinglePlace name={place.place_name} address={place.place_address} hours={place.place_hours} img={place.place_img} type={place.type} id={i} setSelected={setSelected}/>
 
-        </Grid> })}
+        </Grid> }): <h4>Sorry. no places found in your area.</h4>}
       </Grid>
     </Box>
   );
