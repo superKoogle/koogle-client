@@ -9,6 +9,7 @@ import WrongDataDialog from './wrongData.js/WrongDataReport';
 import Map from '../../components/Map';
 
 export default function PrimaryPlace({place}) {
+  console.log(place);
   return (
     <Card sx={{ maxWidth: 345 }} height={300}>
       <CardMedia
@@ -20,17 +21,17 @@ export default function PrimaryPlace({place}) {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {place.place_name}
+          {place?.place_name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {place.type}<br/>{place.place_address}<br/>{place.place_hours}<br/>
+          {place?.type}<br/>{place?.place_address}<br/>{place?.place_hours}<br/>
         </Typography>
       </CardContent>
       <div style={{height:"500px"}}>
-        <Map height={"210px"} width={"100%"} location={{lat:place.place_lat, lng:place.place_lng}} zoomy={16}></Map>
+        {place && <Map height={"210px"} width={"100%"} location={{lat:place.place_lat, lng:place.place_lng}} zoomy={16}></Map>}
       </div>
       <CardActions>
-        <WrongDataDialog placeId={place.place_id}></WrongDataDialog>
+        <WrongDataDialog placeId={place?.place_id}></WrongDataDialog>
       </CardActions>
     </Card>
   );

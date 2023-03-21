@@ -30,8 +30,6 @@ export default function PlaceDetailes({ typeOf }) {
   const detailesObj = { place_name: name, place_address: address, place_hours: hours, place_img: img, place_type: typeOf }
 
   const addPlaceDetailes = async () => {
-    console.log(nusach);
-    console.log(typeOf);
     switch (typeOf) {
       case 1:
         nusach ? setValid(true) : setErr("required field")
@@ -48,7 +46,7 @@ export default function PlaceDetailes({ typeOf }) {
     }
     if (valid) {
       const token = sessionStorage.getItem("token");
-      if(!token){
+      if (!token) {
         ///////////////////////
         console.log("no token");
         return;
@@ -57,7 +55,7 @@ export default function PlaceDetailes({ typeOf }) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'authorization':`Bearer ${token}`
+          'authorization': `Bearer ${token}`
         },
         body: typeOf == 1 ? JSON.stringify({ ...detailesObj, syn_nusach: nusach }) :
           typeOf == 2 ? JSON.stringify({ ...detailesObj, habad_intermediary: intermediary, habad_phone: habadPhone, habad_site_link: habadSiteLink }) :
@@ -68,8 +66,8 @@ export default function PlaceDetailes({ typeOf }) {
         const options = await response.json();
       }
     }
-    else{
-      setErr("empty fields required");
+    else {
+      setErr("empty feilds required")
       console.log(err);
     }
   }
@@ -113,7 +111,7 @@ export default function PlaceDetailes({ typeOf }) {
       {typeOf == 3 && <Supermarket setMarketPhone={setMarketPhone} setMarketSiteLink={setMarketSiteLink}></Supermarket>}
       {typeOf == 4 && <Restaurant setRestaurantPhone={setRestaurantPhone} setRestaurantType={setRestaurantType} setRestaurantHechsher={setRestaurantHechsher} setRestaurantSiteLink={setRestaurantSiteLink} setRestaurantStars={setRestaurantStars}></Restaurant>}
 
-      <button onClick={()=>{addPlaceDetailes()}}>Add place</button>
+      <button onClick={() => { addPlaceDetailes() }}>Add place</button>
     </>
   );
 }

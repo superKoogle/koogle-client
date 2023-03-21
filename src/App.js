@@ -2,9 +2,11 @@ import {BrowserRouter as Router, Routes, Route, NavLink} from "react-router-dom"
 import Login from "./pages/login/Login";
 import Home from "./pages/home";
 import AddPlace from "./pages/addPlace";
-import PlacesDetails from "./pages/placesDetails";
+import PlacesDetails from "./pages/placesGrid";
 import Nav from "./components/Nav";
-//import Host from "./pages/host/Host";
+import HostorStay from "./pages/host";
+
+
 
 function App() {
   return (
@@ -16,8 +18,8 @@ function App() {
       <Route path="/login" element={<Login/>} />
       <Route path="/addPlace" element={<AddPlace/>}/>
       <Route path="/placeDetails" element={<PlacesDetails/>}/>
-   {/*   <Route path="/host" element={<Host/>}/>
-*/}    </Routes>
+      <Route path="/host" element={<HostorStay/>}/>
+    </Routes>
    </Router>
   );
 }
