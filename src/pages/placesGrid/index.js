@@ -58,7 +58,7 @@ const PlacesDetails = ({ }) => {
                 </Grid>
             </Grid>
             <Grid item xs={6} md={4}>
-                <Item>{places && <PrimaryPlace place={places[selected]}></PrimaryPlace>}</Item>
+                <Item>{places && <PrimaryPlace place={places[selected]} userLocation={userLocation}></PrimaryPlace>}</Item>
             </Grid>
         </Grid>
     </>);

@@ -1,31 +1,25 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../context/authContext';
 
 const SignIn = () => {
     const navigate = useNavigate();
     const [userName, setUserName] = useState("");
     const [pwd, setPwd] = useState("");
     const [unauthorized, setUnauthorized] = useState(false);
-    const SignIn = async () => {
-        const response = await fetch("http://localhost:3500/api/auth/SignIn", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ user_name: userName, user_password: pwd })
-        })
-        if (response.status == 401) {
-            setUnauthorized(true);
+
+    const {login} = useContext(AuthContext);
+
+    const handleLogin = async(e)=>{
+        try{
+            await login({userName, pwd});
+            navigate("/");
         }
-        else {
-            if (response.ok) {
-                const data = await response.json();
-                const token = data.accessToken;
-                sessionStorage.setItem("token", token);
-                navigate('/')
-            }
+        catch(err){
+            setUnauthorized(err)
         }
     }
+    
     return (
         <div className="sign-in-htm">
             <div className="group">
@@ -42,7 +36,7 @@ const SignIn = () => {
             </div>
             {unauthorized && <><span style={{ color: 'red' }}>one or more fields are not valid</span><br /><br /></>}
             <div className="group">
-                <input type="submit" className="button" value="Sign In" onClick={SignIn} />
+                <input type="submit" className="button" value="Sign In" onClick={handleLogin} />
             </div>
             <div className="hr"></div>
             <div className="foot-lnk">
