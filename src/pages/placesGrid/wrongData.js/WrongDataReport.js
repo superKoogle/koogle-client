@@ -7,13 +7,27 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import CustomizedButton from '../../../components/Button';
+import InfoAlert from '../../../components/InfoAlert';
+import { AuthContext } from '../../../context/authContext';
 import ReportToFill from './Report';
+
+
+
+
+
 export default function WrongDataDialog({placeId}) {
+  const [notLoggedIn, setNotLoggedIn] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [wrongField, setWrongField] = React.useState('');
   const [text, setText] = React.useState('');
 
+  const {currentUser} = React.useContext(AuthContext);
+
   const handleClickOpen = () => {
+    if(!currentUser){
+      setNotLoggedIn(true);
+      return;
+    }
     setOpen(true);
   };
 
@@ -22,9 +36,9 @@ export default function WrongDataDialog({placeId}) {
   };
 
   const sendReport =async()=>{
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
     if(!token){
-      ///////////////////////
+      //
       console.log("no token");
       return;
     }
@@ -46,6 +60,7 @@ export default function WrongDataDialog({placeId}) {
   return (
     <div>
       <CustomizedButton text={"Wrong data? let us know"} onClick={handleClickOpen}/>
+      {notLoggedIn && <InfoAlert message={"Please sign in to use this service."} action={setNotLoggedIn}></InfoAlert>}
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Subscribe</DialogTitle>
         <DialogContent>

@@ -1,0 +1,69 @@
+import * as React from "react";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import LogoutIcon from '@mui/icons-material/Logout';
+import { AuthContext } from "../context/authContext";
+import { indigo } from "@mui/material/colors";
+import { Grid, Typography } from "@mui/material";
+
+
+export default function AccountCircleIcon() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const {logout, currentUser} = React.useContext(AuthContext);
+  ////////////////////////////////////////////////////
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogin=()=>{
+    window.open("http://localhost:3000/login").focus();
+  }
+
+  return (
+    <Grid container spacing={3}>
+    <Grid item>
+      <IconButton
+        aria-label="account of current user"
+        aria-controls="menu-appbar"
+        aria-haspopup="true"
+        onClick={handleMenu}
+        color="inherit"
+        sx={{fontSize:40, marginTop:"8px"}}
+      >
+        <AccountCircle />
+      </IconButton>
+      {currentUser && <Typography>{`${currentUser.user_fname} ${currentUser.user_lname}`}</Typography>}
+      <Menu
+        id="menu-appbar"
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right"
+        }}
+        keepMounted
+        transformOrigin={{
+          vertical: 10,
+          horizontal: 10
+        }}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={handleLogin}>sign in</MenuItem>
+        <MenuItem onClick={handleLogin}>sign up</MenuItem>
+      </Menu>
+      </Grid>
+      <Grid item>
+      {currentUser && <LogoutIcon sx={{color:indigo[600], marginTop:"15px"}} onClick={logout} ></LogoutIcon>}
+      </Grid>
+    </Grid>
+  );
+}

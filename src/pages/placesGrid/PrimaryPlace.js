@@ -9,6 +9,7 @@ import WrongDataDialog from './wrongData.js/WrongDataReport';
 import Map from '../../components/Map';
 
 export default function PrimaryPlace({ place, userLocation }) {
+  
   console.log(place);
 
   return (
@@ -29,10 +30,13 @@ export default function PrimaryPlace({ place, userLocation }) {
         </Typography>
       </CardContent>
       <div style={{ height: "500px" }}>
-        {place && <Map height={"210px"} width={"100%"} location={{ lat: place.place_lat, lng: place.place_lng }} zoomy={16} showDirection={true} userLocation={userLocation}></Map>}
+        {place && 
+        <Map height={"210px"} width={"100%"} location={{ lat: place.place_lat, lng: place.place_lng }} zoomy={16} showDirection={true} userLocation={userLocation}></Map>
+        }
       </div>
       <CardActions>
         <WrongDataDialog placeId={place?.place_id}></WrongDataDialog>
+        
       </CardActions>
     </Card>
   );

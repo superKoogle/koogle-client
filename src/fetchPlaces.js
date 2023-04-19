@@ -11,7 +11,8 @@ const getPlaces = async (location) => {
     })
     if (response?.ok) {
         const _places = await response.json();
-        const places = _places.map((p) => { return { ...p, type: p.place_type == 1 ? 'synagogue' : p.place_type == 2 ? 'Beit habad' : p.place_type == 3 ? 'Supermarket' : 'Restaurant' } })
+        const places = _places.map((p) => { return { ...p, type: p.place_type == 1 ? 'synagogue' : p.place_type == 2 ? 'Beit habad' : p.place_type == 3 ? 'Supermarket' : 'Restaurant' } });
+        console.log(places);
         return places;
     }
     else {

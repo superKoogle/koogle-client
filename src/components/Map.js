@@ -3,7 +3,7 @@ import { GoogleMap, useJsApiLoader, Marker, DirectionsRenderer } from '@react-go
 
 
 
-function Map({ location, height, width, zoomy , showDirection, userLocation}) {
+function Map({ location, height, width, zoomy , showDirection, userLocation, m}) {
   const [center, setCenter] = React.useState()
   const [zoom, setZoom] = React.useState(18);
   const [route, setRoute] = React.useState();
@@ -29,6 +29,7 @@ function Map({ location, height, width, zoomy , showDirection, userLocation}) {
 
   const containerStyle = {
     margin: 'auto',
+    marginTop: m || 0,
     width: width,
     height: height
   };

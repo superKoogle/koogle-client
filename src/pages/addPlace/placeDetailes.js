@@ -32,13 +32,13 @@ export default function PlaceDetailes({ typeOf }) {
   const addPlaceDetailes = async () => {
     switch (typeOf) {
       case 1:
-        nusach ? setValid(true) : setErr("required field")
+        nusach ? setValid(true) : setErr("required field");
         break;
       case 2:
-        (intermediary && habadPhone && habadSiteLink) ? setValid(true) : setErr("required fields")
+        (intermediary && habadPhone && habadSiteLink) ? setValid(true) : setErr("required fields");
         break;
       case 3:
-        (marketPhone && marketSiteLink) ? setValid(true) : setErr("required fields")
+        (marketPhone && marketSiteLink) ? setValid(true) : setErr("required fields");
         break;
       case 4:
         restaurantPhone && restaurantType && restaurantHechsher && restaurantSiteLink && restaurantStars ? setValid(true) : setErr("required field")
@@ -64,6 +64,7 @@ export default function PlaceDetailes({ typeOf }) {
       })
       if (response?.ok) {
         const options = await response.json();
+        console.log(options);
       }
     }
     else {
