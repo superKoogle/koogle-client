@@ -13,7 +13,7 @@ const SignIn = () => {
     const handleLogin = async(e)=>{
         try{
             await login({userName, pwd});
-            navigate("/");
+            navigate(-1);
         }
         catch(err){
             setUnauthorized(err)

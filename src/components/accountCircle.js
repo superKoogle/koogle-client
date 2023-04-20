@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-import AccountCircle from "@mui/icons-material/AccountCircle";
+import {AccountCircle} from "@mui/icons-material";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -29,7 +29,7 @@ export default function AccountCircleIcon() {
   }
 
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={3} sx={{right:'20px'}}>
     <Grid item>
       <IconButton
         aria-label="account of current user"

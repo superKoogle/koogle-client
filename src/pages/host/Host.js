@@ -68,17 +68,14 @@ export default function Host({ typeOf }) {
 
   return (
 
-    <div style={{ width: '100%' }}>
-     
+    <div style={{ width: '100%'}}
+    >
       <form onSubmit={formik.handleSubmit} > 
       <Box
       sx={{
         display: 'flex',
-        flexDirection: 'row',
-        p: 1,
-        m: 1,
-        bgcolor: 'background.paper',
-        borderRadius: 1,
+        alignItems: 'center',
+        flexDirection: 'column',
       }}
     >
       {(!flag || typeOf==2) &&<Item><TextField
@@ -90,9 +87,10 @@ export default function Host({ typeOf }) {
           onChange={formik.handleChange}
           error={formik.touched.host_start_date && Boolean(formik.errors.host_start_date)}
           helperText={formik.touched.host_start_date && formik.errors.host_start_date}
-          sx={{ margin: "30px" }}
+          
         /></Item>}
-      {(!flag  || typeOf==2 )&&<Item><TextField
+      {(!flag  || typeOf==2 )&&<Item>
+        <TextField
           id="host_end_date"
           name="host_end_date"
           label="until"
@@ -101,8 +99,10 @@ export default function Host({ typeOf }) {
           onChange={formik.handleChange}
           error={formik.touched.host_end_date && Boolean(formik.errors.host_end_date)}
           helperText={formik.touched.host_end_date && formik.errors.host_end_date}
-          sx={{ margin: "30px" }}
-        /></Item>}
+          />
+        </Item>
+        }
+     
 <  TextField
           id="host_always"
           name="host_always"
@@ -113,6 +113,7 @@ export default function Host({ typeOf }) {
           error={formik.touched.host_always && Boolean(formik.errors.host_always)}
           helperText={formik.touched.host_always && formik.errors.host_always}
         />
+        
 <Item> <  TextField
           id="host_max_guests"
           name="host_max_guests"
@@ -131,8 +132,8 @@ export default function Host({ typeOf }) {
           onChange={formik.handleChange}
           error={formik.touched.host_min_age && Boolean(formik.errors.host_min_age)}
           helperText={formik.touched.host_min_age && formik.errors.host_min_age}
-        /></Item>
-
+        />
+</Item>
 <TextField
           id="host_type"
           name="host_type"
@@ -144,15 +145,10 @@ export default function Host({ typeOf }) {
           error={formik.touched.host_type && Boolean(formik.errors.host_type)}
           helperText={formik.touched.host_type && formik.errors.host_type}
         />
-
-       
-       
-       
-        
-        <br></br><br></br>
+      
         {typeOf==1 && <RadioButtonsGroup flag={setFlag}></RadioButtonsGroup>}
-        <br />
-      <RecentRequests></RecentRequests>
+        
+      
         <CustomizedButton onClick={formik.handleSubmit} color="primary" variant="contained" fullWidth text={"Submit"} />
         </Box>
       </form>

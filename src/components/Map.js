@@ -4,7 +4,6 @@ import { GoogleMap, useJsApiLoader, Marker, DirectionsRenderer } from '@react-go
 
 
 function Map({ location, height, width, zoomy , showDirection, userLocation, m}) {
-  const [center, setCenter] = React.useState()
   const [zoom, setZoom] = React.useState(18);
   const [route, setRoute] = React.useState();
 
@@ -15,7 +14,7 @@ function Map({ location, height, width, zoomy , showDirection, userLocation, m})
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ source_lat: 31.801887258542692, source_lng: 35.222748793422035, dest_lat: center.lat, dest_lng: center.lng })
+      body: JSON.stringify({ source_lat: userLocation.lat, source_lng: userLocation.lng, dest_lat: location.lat, dest_lng: location.lng })
     })
     if(res.ok){
       const dir = await res.json();
@@ -25,7 +24,7 @@ function Map({ location, height, width, zoomy , showDirection, userLocation, m})
 
   React.useEffect(()=>{
     getDirection();
-   },[center])
+   },[location])
 
   const containerStyle = {
     margin: 'auto',
@@ -34,26 +33,6 @@ function Map({ location, height, width, zoomy , showDirection, userLocation, m})
     height: height
   };
 
-  const findLocation = async () => {
-    if (typeof location == 'object') {
-      setCenter(location);
-      return;
-    }
-    const response = await fetch('http://localhost:3500/api/maps/geocode', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ address: location })
-    })
-    console.log(response);
-    if (response?.ok) {
-      const newCenter = await response.json();
-      console.log(newCenter)
-      setCenter(newCenter);
-    }
-  }
-  React.useEffect(() => { findLocation() }, [location])
   const [map, setMap] = React.useState(null);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -72,18 +51,17 @@ function Map({ location, height, width, zoomy , showDirection, userLocation, m})
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
-      center={center}
+      center={location}
       zoom={zoom}
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
-      {/* {<DirectionsRenderer  />} */}
       {showDirection && route && <DirectionsRenderer directions={route}/>}
       { /* Child components, such as markers, info windows, etc. */}
       <>
         <Marker
           key={1}
-          position={center}
+          position={location}
         ></Marker>
       </>
     </GoogleMap>

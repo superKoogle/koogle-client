@@ -10,6 +10,7 @@ import CustomizedButton from '../../../components/Button';
 import InfoAlert from '../../../components/InfoAlert';
 import { AuthContext } from '../../../context/authContext';
 import ReportToFill from './Report';
+import { setNestedObjectValues } from 'formik';
 
 
 
@@ -20,6 +21,7 @@ export default function WrongDataDialog({placeId}) {
   const [open, setOpen] = React.useState(false);
   const [wrongField, setWrongField] = React.useState('');
   const [text, setText] = React.useState('');
+  const [status, setStatus] = React.useState(0);
 
   const {currentUser} = React.useContext(AuthContext);
 
@@ -50,17 +52,23 @@ export default function WrongDataDialog({placeId}) {
       },
       body: JSON.stringify({report_place_id:placeId, report_text:text})
     })
-    if(response?.ok){
-      const msg = await response.json();
+    const msg = await response.json();
       console.log(msg);
-  }
+    if(response?.ok){
+      setStatus(200);
+      }
+      else{
+        console.log("errory");
+        setStatus(400);
+      }
+  
     handleClose();
   }
 
   return (
     <div>
       <CustomizedButton text={"Wrong data? let us know"} onClick={handleClickOpen}/>
-      {notLoggedIn && <InfoAlert message={"Please sign in to use this service."} action={setNotLoggedIn}></InfoAlert>}
+      {notLoggedIn && <InfoAlert message={"Please sign in to use this service."} action={setNotLoggedIn} severity="info"></InfoAlert>}
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Subscribe</DialogTitle>
         <DialogContent>
@@ -75,6 +83,8 @@ export default function WrongDataDialog({placeId}) {
           <Button onClick={()=>{sendReport()}}>send</Button>
         </DialogActions>
       </Dialog>
+      {status==200 && <InfoAlert message={"Thank you! we will do our best to fix it."} action={setStatus} severity="success"></InfoAlert>}
+          {status==400 && <InfoAlert message={"Something went wrong. sorry :("} action={setStatus} severity="error"></InfoAlert>}
     </div>
   );
 }

@@ -10,6 +10,7 @@ import { Box, Grid } from '@mui/material';
 const Home = () => {
   const [location, setLocation] = useState();
   const [range, setRange] = useState(20000);
+  
   return (
     <>
       <Box sx={{ width: '100%' }}>

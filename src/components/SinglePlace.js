@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
+import LaunchIcon from '@mui/icons-material/Launch';
 import Button from '@mui/material/Button';
 import CustomizedButton from './Button'
 
@@ -58,7 +59,9 @@ export default function SinglePlace({ name, address, hours, img, type, id, setSe
             </Grid>
           </Grid>
           <Grid item>
-          <CustomizedButton text={"View details"} onClick={(e)=>{handleClick(e)}}></CustomizedButton>
+          <CustomizedButton text={"View details  "} onClick={(e)=>{handleClick(e)}} sign={<LaunchIcon></LaunchIcon>}>
+            <LaunchIcon></LaunchIcon>
+          </CustomizedButton>
           </Grid>
         </Grid>
       </Grid>

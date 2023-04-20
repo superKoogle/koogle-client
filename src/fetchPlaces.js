@@ -7,7 +7,7 @@ const getPlaces = async (location) => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ address: location, maxDistance: 100000 })
+        body: JSON.stringify({ lat: location.lat, lng:location.lng, maxDistance: 100000 })
     })
     if (response?.ok) {
         const _places = await response.json();

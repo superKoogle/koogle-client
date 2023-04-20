@@ -18,7 +18,7 @@ export default function CustomizedSlider({action}) {
       <Slider
       min={1}
       max = {200}
-      onChange={(e, val)=>{setRange(val)}}
+      onChange={(e, val)=>{setRange(val); action(val*1000);}}
         onChangeCommitted={(e, val)=>{action(val*1000)}}
        valueLabelDisplay="auto"
         aria-label="Distance"
