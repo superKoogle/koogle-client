@@ -34,9 +34,10 @@ export default function NavTabs() {
                <NavLink label="add place" to="/addPlace" /> 
            </Tabs>*/}
            
-             <NavLink to="/" >koogle</NavLink>
-             <NavLink to="/login">login</NavLink>
-             <NavLink to="/host">host</NavLink>
+             <NavLink to="/" >koogle</NavLink>&nbsp;&nbsp;
+             <NavLink to="/login">login</NavLink>&nbsp;&nbsp;
+             <NavLink to="/host">host</NavLink>&nbsp;&nbsp;
+             <NavLink to="/addPlace">add place</NavLink>
               {/* <NavLink label="add place" to="/addPlace" /> */}
            
           </Grid>

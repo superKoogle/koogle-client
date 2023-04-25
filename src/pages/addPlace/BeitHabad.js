@@ -1,36 +1,38 @@
 import React from 'react'
 import addPlace from './addPlace';
 import { AuthContext } from "../../context/authContext"
-import { Grid, TextField} from '@mui/material';
+import { Grid, TextField } from '@mui/material';
 import CustomizedButton from '../../components/Button';
 import { Formik, useFormik } from 'formik';
 import * as yup from 'yup';
 
-const Supermarket = () => {
+const BeitHabad = () => {
   const { token, currentUser } = React.useContext(AuthContext);
   const validationSchema = yup.object({
-    name: yup.string().required('name of supermarket'),
-    address: yup.string().required('address of the supermarket'),
-    hours: yup.string('00:00 - 00:00'),
+    name: yup.string().required('name of Beit Habad'),
+    address: yup.string().required('address of the Beit Habad'),
+    hours: yup.string('open hours of the place'),
     phone: yup.string(),
-    siteLink: yup.string().url().required("Link for the supermarket's site")
+    siteLink: yup.string().url().required("Link for the BeitHabad's site"),
+    agent: yup.string().required()
   });
 
   const formik = useFormik({
     initialValues: {
       name: '',
       address: '',
-      hours: '',
+      hours: '00:00 - 00:00',
       phone: '',
-      siteLink: ''
+      siteLink: '',
+      agent:''
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       if (!currentUser || !token) return;
-      const type = 3;
+      const type = 2;
       const userId = currentUser.user_id;
-      console.log('in submit');
-      console.log(values);
+      //console.log('in submit');
+      //console.log(values);
       const place = { ...values, type, userId };
       await addPlace(place, token);
     }
@@ -70,15 +72,6 @@ const Supermarket = () => {
               helperText={formik.touched.hours && formik.errors.hours}
             />
             <  TextField
-              id="phone"
-              name="phone"
-              type="string"
-              label="phone number"
-              onChange={formik.handleChange}
-              error={formik.touched.phone && Boolean(formik.errors.phone)}
-              helperText={formik.touched.phone && formik.errors.phone}
-            />
-            <  TextField
               id="siteLink"
               name="siteLink"
               type="string"
@@ -86,6 +79,24 @@ const Supermarket = () => {
               onChange={formik.handleChange}
               error={formik.touched.siteLink && Boolean(formik.errors.siteLink)}
               helperText={formik.touched.siteLink && formik.errors.siteLink}
+            />
+               <  TextField
+              id="agent"
+              name="agent"
+              type="string"
+              label="agent"
+              onChange={formik.handleChange}
+              error={formik.touched.agent && Boolean(formik.errors.agent)}
+              helperText={formik.touched.agent && formik.errors.agent}
+            />
+             <  TextField
+              id="phone"
+              name="phone"
+              type="string"
+              label="agent phone number"
+              onChange={formik.handleChange}
+              error={formik.touched.phone && Boolean(formik.errors.phone)}
+              helperText={formik.touched.phone && formik.errors.phone}
             />
           </Grid>
           <Grid item xs={12} justifyContent='center' >
@@ -97,4 +108,4 @@ const Supermarket = () => {
   )
 }
 
-export default Supermarket
+export default BeitHabad
