@@ -6,33 +6,40 @@ import Synagogue from './Synagogue';
 import BeitHabad from './BeitHabad';
 import Restaurant from './Restaurant';
 import Supermarket from './Supermarket';
+import {Box, Tab} from '@mui/material';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
+import { indigo } from '@mui/material/colors';
+
 
 export default function AddPlace() {
     const [type, setType] = useState();
-
+    const handleChange = (event, newValue) => {
+        setType(newValue);
+      };
     return (
         <>
+        
            <h1>Which place would you like to add?</h1>
-            <Grid container spacing={2} justifyContent='center'>
-                <Grid item>
-                    <CustomizedButton text={"Synagogue"} onClick={() => { setType(1) }}></CustomizedButton>
-                </Grid>
-                <Grid item>
-                    <CustomizedButton text={"Beit habad"} onClick={() => { setType(2) }}></CustomizedButton>
-                </Grid>
-                <Grid item>
-                    <CustomizedButton text={"Restaurant"} onClick={() => { setType(3) }}></CustomizedButton>
-                </Grid>
-                <Grid item>
-                    <CustomizedButton text={"Supermarket"} onClick={() => { setType(4) }}></CustomizedButton>
-                </Grid>
-            <Grid item xs={12}>
-            {type == 1 && <Synagogue></Synagogue>}
-            {type == 2 && <BeitHabad></BeitHabad>}
-            {type == 3 && <Restaurant></Restaurant>}
-            {type == 4 && <Supermarket></Supermarket>}
-            </Grid>
-            </Grid>
+           
+            <Box sx={{ width: '100%', typography: 'body1' }}>
+      <TabContext value={type}>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' , justifyContent:'center'}}>
+          <TabList onChange={handleChange} aria-label="lab API tabs example" centered textColor='primary'
+                      indicatorColor='primary'>
+            <Tab label="Synagogue" value="1" />
+            <Tab label="Beit habad" value="2" />
+            <Tab label="Supermarket" value="3" />
+            <Tab label="Restaurant" value="4" />
+          </TabList>
+        </Box>
+        <TabPanel value="1"><Synagogue/></TabPanel>
+        <TabPanel value="2"><BeitHabad/></TabPanel>
+        <TabPanel value="3"><Supermarket/></TabPanel>
+        <TabPanel value="4"><Restaurant/></TabPanel>
+      </TabContext>
+    </Box>
         </>
     );
 }

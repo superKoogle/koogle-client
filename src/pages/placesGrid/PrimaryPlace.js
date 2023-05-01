@@ -9,16 +9,14 @@ import Map from '../../components/Map';
 
 export default function PrimaryPlace({ place, userLocation }) {
   
-  console.log(place);
-
   return (
-    <Card sx={{ maxWidth: 360 }} height={300} >
+    <Card sx={{ maxWidth: 360 }}  >
       <CardMedia
         sx={{ height: 140 }}
         component="img"
         height="194"
-        image="/pics/default.jpg"
-        title="default"
+        image={place?.place_img ? `http://localhost:3500/images/${place.place_img}` : "/pics/default.jpg"}
+        title={place?.place_name}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -28,7 +26,7 @@ export default function PrimaryPlace({ place, userLocation }) {
           {place?.type}<br />{place?.place_address}<br />{place?.place_hours}<br />
         </Typography>
       </CardContent>
-      <div style={{ height: "500px" }}>
+      <div style={{ height: "430px" , marginTop:"30px"}}>
         {place && 
         <Map height={"210px"} width={"100%"} location={{ lat: place.place_lat, lng: place.place_lng }} zoomy={16} showDirection={true} userLocation={userLocation}></Map>
         }

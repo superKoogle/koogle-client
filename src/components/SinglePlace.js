@@ -7,6 +7,7 @@ import ButtonBase from '@mui/material/ButtonBase';
 import LaunchIcon from '@mui/icons-material/Launch';
 import Button from '@mui/material/Button';
 import CustomizedButton from './Button'
+import { CardMedia , Card} from '@mui/material';
 
 const Img = styled('img')({
   margin: 'auto',
@@ -22,8 +23,9 @@ export default function SinglePlace({ name, address, hours, img, type, id, setSe
      setSelected(id);
     }
 
+
   return (
-    <Paper
+    <Card
       sx={{
         p: 2,
         margin: '20px auto',
@@ -35,9 +37,14 @@ export default function SinglePlace({ name, address, hours, img, type, id, setSe
     >
       <Grid container spacing={2}>
         <Grid item>
-          <ButtonBase sx={{ width: 128, height: 128 }}>
-            <Img alt={name} src="...../public/pics/susan.jpg" />
-          </ButtonBase>
+        <CardMedia
+        sx={{ width: 128, height: 128,borderRadius:1 }}
+        component="img"
+        height="100%"
+        image={`http://localhost:3500/images/${img}`}
+        title={name}
+        
+      />
         </Grid>
         <Grid item xs={6} sm container>
           <Grid item xs container direction="column" spacing={2}>
@@ -65,7 +72,7 @@ export default function SinglePlace({ name, address, hours, img, type, id, setSe
           </Grid>
         </Grid>
       </Grid>
-    </Paper>
+    </Card>
   );
 }
 

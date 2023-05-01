@@ -4,9 +4,9 @@
 import Uploader from "./uploader"
 import { useState } from "react"
 
-export default function Picture()
+export default function Picture({picture,setPicture})
 {
-    const [picture,setPicture] = useState("")
+    
 
     return (
         <>

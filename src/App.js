@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Login from "./pages/login/Login";
 import Home from "./pages/home";
 import AddPlace from "./pages/addPlace";
@@ -8,29 +8,42 @@ import HostorStay from "./pages/host";
 import { AuthContextProvider } from "./context/authContext";
 import Picture from "./pages/upload/picture";
 import AnotherNav from "./components/anotherNav";
+import Example from "./pages/host/example";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { indigo } from "@mui/material/colors";
 
-
-
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: indigo[700],
+    },
+  },
+});
 
 function App() {
   return (
     <div className="App">
+      <ThemeProvider theme={theme}>
       <AuthContextProvider>
         {/* <AnotherNav></AnotherNav> */}
         <Router>
-          <Nav />
-          
-          {/*<div style={{borderRadius:"180px", backgroundColor:"darkblue", display:"inline-flex", padding:"10px"}}>A</div>*/}
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/addPlace" element={<AddPlace />} />
-            <Route path="/placeDetails" element={<PlacesDetails />} />
-            <Route path="/host" element={<HostorStay/>} />
-            <Route path="/picture" element={<Picture/>}></Route>
-          </Routes>
+          {/* <Box sx={{minHeight:"100vh",display:"flex", flexGrow:1,flexFlow:"column"}}> */}
+            <Nav />
+            {/* <Box sx={{display:"flex", flexGrow:1}} > */}
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/addPlace" element={<AddPlace />} />
+                  <Route path="/placeDetails" element={<PlacesDetails />} />
+                  <Route path="/host" element={<HostorStay/>} />
+                  <Route path="/picture" element={<Picture/>}/>
+                  <Route path="/example" element={<Example/>}/>
+              </Routes>
+            {/* </Box > */}
+            {/* </Box > */}
         </Router>
       </AuthContextProvider>
+      </ThemeProvider>
     </div>
 
   );

@@ -17,9 +17,9 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default function Results({ location, range }) {
+export default function Results({ location, range,results, setResults }) {
   const navigate = useNavigate();
-  const [results, setResults] = useState([]);
+  
   const [selected, setSelected] = useState(-1);
 
 
@@ -40,10 +40,10 @@ export default function Results({ location, range }) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2} columns={4}>
+      <Grid container spacing={2}>
         {results.length > 0 ? results.filter(place => place.distance <= range)
           .map((place, i) => {
-            return <Grid item xs={4}>
+            return <Grid item xs={6}>
 
               <SinglePlace name={place.place_name} address={place.place_address} hours={place.place_hours} img={place.place_img} type={place.type} id={i} setSelected={setSelected} />
 

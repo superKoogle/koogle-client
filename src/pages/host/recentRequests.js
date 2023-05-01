@@ -5,9 +5,11 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import { AuthContext } from '../../context/authContext';
 
+
 export default function RecentRequests() {
   const [results, setResults] = React.useState();
   const { token, currentUser } = React.useContext(AuthContext) || {};
+  const [remove ,setRemove] = React.useState();
 
  
   React.useEffect(() => {
@@ -22,8 +24,9 @@ export default function RecentRequests() {
       })
       if (response?.ok) {
         console.log("succeeded")
-        setResults(await response.json())
-        console.log(results)
+       
+      setResults(await response.json())
+       console.log(results)
       }
       else {
         console.log("err");
@@ -31,25 +34,28 @@ export default function RecentRequests() {
     };
     x()
   }, [currentUser]);
+
+  React.useEffect(()=>{
+    if(results)
+    {
+      if(results.length==1)
+      {
+        setResults(null);
+      }
+      else{
+        const filtered = results.filter((res,ind)=>ind!=remove);
+        setResults(filtered)       
+      }
+    }
+  },[remove]);
+
   return (
     <>
        {!results && <div>Your recent requests Will be shown here.</div>}
-       <ImageList sx={{ width: '100%', height: 850 }} cols={1} rowHeight={180}>
-
-       {results && results.map((res)=><ImageListItem><HostCard hostReq={res}/></ImageListItem>)}
+       <ImageList sx={{ width: '100%', height: 850 }} cols={1} >
+{/* rowHeight={180} */}
+       {results && results.map((res,ind)=><ImageListItem><HostCard hostReq={res} index={ind} removeMe={setRemove} /></ImageListItem>)}
        </ImageList>
     </>)
 
 }
-
-
-
-
-
-
-
-
-
-
-
-

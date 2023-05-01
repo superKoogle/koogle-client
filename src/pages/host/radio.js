@@ -6,7 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 
 
-export default function RadioButtonsGroup({flag}) {
+export default function RadioButtonsGroup({flag,validFlag}) {
     return (
       <FormControl>
         <RadioGroup
@@ -14,8 +14,8 @@ export default function RadioButtonsGroup({flag}) {
           defaultValue="female"
           name="radio-buttons-group"
         >
-          <FormControlLabel value="always avalible" onClick={()=>{flag(true)}} control={<Radio/>} label="Always avalible" />
-          <FormControlLabel value="choose dates" onClick={()=>{flag(false)}} control={<Radio/>} label="choose dates" />
+          <FormControlLabel value="always avalible" onClick={()=>{flag(true);validFlag(false)}} control={<Radio/>} label="Always avalible" />
+          <FormControlLabel value="choose dates" onClick={()=>{flag(false);validFlag(true)}} control={<Radio/>} label="choose dates" />
         </RadioGroup>
       </FormControl>
     );

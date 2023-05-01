@@ -5,8 +5,11 @@ import { Grid, TextField } from '@mui/material';
 import CustomizedButton from '../../components/Button';
 import { Formik, useFormik } from 'formik';
 import * as yup from 'yup';
+import Picture from '../upload/picture';
+import { Card } from '@mui/material';
 
 const BeitHabad = () => {
+  const [picture,setPicture] = React.useState("");
   const { token, currentUser } = React.useContext(AuthContext);
   const validationSchema = yup.object({
     name: yup.string().required('name of Beit Habad'),
@@ -33,7 +36,7 @@ const BeitHabad = () => {
       const userId = currentUser.user_id;
       //console.log('in submit');
       //console.log(values);
-      const place = { ...values, type, userId };
+      const place = { ...values, type, userId , image:picture };
       await addPlace(place, token);
     }
   });
@@ -41,8 +44,10 @@ const BeitHabad = () => {
   return (
     <>
       <form onSubmit={formik.handleSubmit}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} justifyContent='center'>
+      <Card sx={{ minWidth: 275, margin: 9, padding: 5 }}>
+                    <Grid container spacing={3} justifyContent='center'>
+
+                        <Grid xs={3} item>
 
             <TextField
               id="name"
@@ -53,6 +58,8 @@ const BeitHabad = () => {
               error={formik.touched.name && Boolean(formik.errors.name)}
               helperText={formik.touched.name && formik.errors.name}
             />
+               </Grid>
+                        <Grid xs={3} item>
             <  TextField
               id="address"
               name="address"
@@ -62,6 +69,8 @@ const BeitHabad = () => {
               error={formik.touched.address && Boolean(formik.errors.address)}
               helperText={formik.touched.address && formik.errors.address}
             />
+               </Grid>
+                        <Grid xs={3} item>
             <  TextField
               id="hours"
               name="hours"
@@ -71,6 +80,8 @@ const BeitHabad = () => {
               error={formik.touched.hours && Boolean(formik.errors.hours)}
               helperText={formik.touched.hours && formik.errors.hours}
             />
+               </Grid>
+                        <Grid xs={3} item>
             <  TextField
               id="siteLink"
               name="siteLink"
@@ -80,6 +91,8 @@ const BeitHabad = () => {
               error={formik.touched.siteLink && Boolean(formik.errors.siteLink)}
               helperText={formik.touched.siteLink && formik.errors.siteLink}
             />
+               </Grid>
+                        <Grid xs={3} item>
                <  TextField
               id="agent"
               name="agent"
@@ -89,6 +102,8 @@ const BeitHabad = () => {
               error={formik.touched.agent && Boolean(formik.errors.agent)}
               helperText={formik.touched.agent && formik.errors.agent}
             />
+               </Grid>
+                        <Grid xs={3} item>
              <  TextField
               id="phone"
               name="phone"
@@ -99,10 +114,15 @@ const BeitHabad = () => {
               helperText={formik.touched.phone && formik.errors.phone}
             />
           </Grid>
+          
+                        <Grid xs={3} item>
+          <Picture picture={picture} setPicture={setPicture}/>
+          </Grid>
           <Grid item xs={12} justifyContent='center' >
             <CustomizedButton onClick={formik.handleSubmit} text='Submit' />
           </Grid>
         </Grid>
+        </Card>
       </form>
     </>
   )

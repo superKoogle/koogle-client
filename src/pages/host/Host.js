@@ -9,32 +9,40 @@ import RecentRequests from './recentRequests';
 import Box, { BoxProps } from '@mui/material/Box';
 import Item from './item';
 
-const validationSchema = yup.object({
-  //host_start_date, host_end_date,host_always,host_max_guests,host_min_age,host_type
-  host_start_date: yup
-    .date('Enter your date')
-    .required('Date is required'),
-  host_end_date: yup
-    .date('Enter your date')
-    .required('Date is required'),
-  host_always: yup
-    .boolean(),
-  host_max_guests: yup
-    .number(),
-  host_min_age: yup
-    .number(),
-  host_type: yup
-    .string()
-});
+//var validationFlag = false;
 
-export default function Host({ typeOf }) {
+
+export default function Host({ avigail }) {
   const [flag, setFlag] = React.useState(true);
+  const [validationFlag,setValidationFlag]=React.useState();
+
+  const validationSchema = yup.object({
+    //host_start_date, host_end_date,host_always,host_max_guests,host_min_age,host_type
+    //host_start_date:validationFlag? yup
+    //   .date('Enter your date')
+    //   .required('Date is required'):yup
+    //   .date('Enter your date'),
+    // host_end_date:validationFlag==true? yup
+    //   .date('Enter your date')
+    //   .required('Date is required'):yup
+    //   .date('Enter your date'),
+    // host_always: yup
+    //   .boolean(),
+    host_max_guests: yup
+      .number(),
+    host_min_age: yup
+      .number(),
+    // host_type: yup
+    //   .number()
+  });
+
+
   const formik = useFormik({
     initialValues: {
       host_always: flag,
       host_max_guests: '1',
       host_min_age: '0',
-      host_type: typeOf,
+      host_type: avigail,
       host_start_date:null,
       host_end_date:null
      
@@ -54,7 +62,8 @@ export default function Host({ typeOf }) {
             'Content-Type': 'application/json',
             'authorization': `Bearer ${token}`
           },
-          body: JSON.stringify(values) })
+          body: JSON.stringify({...values, host_type:avigail}) })
+       
         if (response?.ok) {
           console.log("succeeded")
           const options = await response.json();
@@ -63,9 +72,13 @@ export default function Host({ typeOf }) {
       else {
         console.log("err");
       } 
+         console.log("in request")
+         console.log(values.host_type);
     }
   });
+console.log({validationFlag});
 
+if (!avigail) return null
   return (
 
     <div style={{ width: '100%'}}
@@ -78,7 +91,7 @@ export default function Host({ typeOf }) {
         flexDirection: 'column',
       }}
     >
-      {(!flag || typeOf==2) &&<Item><TextField
+      {(!flag || avigail==2) &&<Item><TextField
           id="host_start_date"
           name="host_start_date"
           label="from"
@@ -89,7 +102,7 @@ export default function Host({ typeOf }) {
           helperText={formik.touched.host_start_date && formik.errors.host_start_date}
           
         /></Item>}
-      {(!flag  || typeOf==2 )&&<Item>
+      {(!flag  || avigail==2 )&&<Item>
         <TextField
           id="host_end_date"
           name="host_end_date"
@@ -137,18 +150,16 @@ export default function Host({ typeOf }) {
 <TextField
           id="host_type"
           name="host_type"
-          type="string"
+          type="number"
           placeholder='type'
-          sx={{display:"none"}}
-          value={typeOf}
+          // sx={{display:"none"}}
+          value={formik.values.host_type}
           onChange={formik.handleChange}
           error={formik.touched.host_type && Boolean(formik.errors.host_type)}
           helperText={formik.touched.host_type && formik.errors.host_type}
         />
       
-        {typeOf==1 && <RadioButtonsGroup flag={setFlag}></RadioButtonsGroup>}
-        
-      
+        {avigail==1 && <RadioButtonsGroup flag={setFlag} validFlag={setValidationFlag}></RadioButtonsGroup>}
         <CustomizedButton onClick={formik.handleSubmit} color="primary" variant="contained" fullWidth text={"Submit"} />
         </Box>
       </form>

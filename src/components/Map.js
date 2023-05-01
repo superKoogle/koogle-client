@@ -1,9 +1,10 @@
 import React from 'react'
-import { GoogleMap, useJsApiLoader, Marker, DirectionsRenderer } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, MarkerF, DirectionsRenderer } from '@react-google-maps/api';
+import NearMeDisabledIcon from '@mui/icons-material/NearMeDisabled';
 
 
 
-function Map({ location, height, width, zoomy , showDirection, userLocation, m}) {
+function Map({ location, height, width, zoomy , showDirection, userLocation, m, markers}) {
   const [zoom, setZoom] = React.useState(18);
   const [route, setRoute] = React.useState();
 
@@ -59,10 +60,17 @@ function Map({ location, height, width, zoomy , showDirection, userLocation, m})
       {showDirection && route && <DirectionsRenderer directions={route}/>}
       { /* Child components, such as markers, info windows, etc. */}
       <>
-        <Marker
-          key={1}
+        <MarkerF
+          key={0}
           position={location}
-        ></Marker>
+        ></MarkerF>
+        {markers && markers.map((marker, i) => 
+           <MarkerF
+           key={i+1}
+           position={marker}
+           icon={'/pics/pin3.png'}
+         ></MarkerF>
+          )}
       </>
     </GoogleMap>
   ) : <></>

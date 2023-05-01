@@ -57,12 +57,10 @@ export default function AccountCircleIcon() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleLogin}>sign in</MenuItem>
-        <MenuItem onClick={handleLogin}>sign up</MenuItem>
+        {!currentUser && <MenuItem onClick={handleLogin}>sign in</MenuItem>}
+        {!currentUser && <MenuItem onClick={handleLogin}>sign up</MenuItem>}
+        {currentUser && <MenuItem onClick={logout}>logout</MenuItem>}
       </Menu>
-      </Grid>
-      <Grid item>
-      {currentUser && <LogoutIcon sx={{color:indigo[600], marginTop:"15px"}} onClick={logout} ></LogoutIcon>}
       </Grid>
     </Grid>
   );
