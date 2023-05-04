@@ -1,38 +1,55 @@
 import React from 'react';
 import Carousel from 'react-material-ui-carousel'
 import { Paper, Button } from '@mui/material'
+import { Image } from '@mui/icons-material';
 
 
 export default function Example(props)
 {
     var items = [
         {
-            name: "Random Name #1",
-            description: "Probably the most random thing you have ever seen!",
-            image: "/pics/susan.jpg"
+            name: "1 theh best place for hosting",
+            description: "theh best place for hosting",
+            // http://localhost:3000/host
+            image:"http://localhost:3500/images/room1.jpg"
         },
         {
-            name: "Random Name #2",
-            description: "Hello World!",
-            image: "/pics/default.jpg"
+            name: "2 theh best place for hosting",
+            description: "theh best place for hosting",
+            image: "http://localhost:3500/images/room2.jpg"
         },
         {
-            name: "Random Name #3",
-            description: "Hello avigail!",
-            image: "/pics/reka.jpg"
+            name:"3 theh best place for hosting",
+            description:"theh best place for hosting",
+            image: "http://localhost:3500/images/room3.jpg"
         },
         {
-            name: "Random Name #4",
-            description: "Hello noah!",
-            image: "/pics/address.png"
-        }
+            name:"4 theh best place for hosting",
+            description: "theh best place for hosting",
+            image: "http://localhost:3500/images/room4.jpg"
+        },
+        {
+            name:"5 theh best place for hosting",
+            description: "theh best place for hosting",
+            image:"http://localhost:3500/images/room5.jpg"
+        },
+        {
+            name:"5 theh best place for hosting",
+            description: "theh best place for hosting",
+            image: "http://localhost:3500/images/room6.jpg"
+        },
+        {
+            name:"5 theh best place for hosting",
+            description: "theh best place for hosting",
+            image: "http://localhost:3500/images/room7.jpg"
+        },
 
     ]
 
     return (
 
 
-        <Carousel duration>
+        <Carousel animation='slide' duration={1300}>
             {
                 items.map( (item, i) => <Item key={i} item={item} sx={{height:"100%"}}/> )
             }
@@ -43,12 +60,9 @@ export default function Example(props)
 function Item(props)
 {
     return (
-        <Paper sx={{display:"flex",flexFlow:"column", backgroundImage:`url(${props.item.image})` , backgroundSize:"100% 100%"}}>
+        <Paper className="carousel-image" sx={{flexFlow:"column", backgroundImage:`url(${props.item.image})` , backgroundSize:"100% 100%" }}>
             <h2>{props.item.name}</h2>
-            <p style={{height:"170px"}}>{props.item.description}</p>
-            <Button className="CheckButton">
-                Check it out!
-            </Button>
+            <p style={{height:"400px"}}>{props.item.description}</p>
         </Paper>
     )
 }

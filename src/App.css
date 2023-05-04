@@ -7,14 +7,11 @@
   pointer-events: none;
 }
 .carousel-image{
-  border:solid 1px blue;
   transition-duration: 1ms;
   animation:'slide';
-  /* swipe:'true';
-  autoPlay:'true'; */
 }
 .carousel-image:hover{
-  transform: scale(1.2);
+  transform: scale(1.4);
   transition: 1s;
   
 }

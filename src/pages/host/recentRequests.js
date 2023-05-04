@@ -36,16 +36,12 @@ export default function RecentRequests() {
   }, [currentUser]);
 
   React.useEffect(()=>{
+    console.log("in use effect");
     if(results)
     {
-      if(results.length==1)
-      {
-        setResults(null);
-      }
-      else{
-        const filtered = results.filter((res,ind)=>ind!=remove);
-        setResults(filtered)       
-      }
+      const filtered = results.filter((res,ind)=>ind!=remove);
+      setResults(filtered)       
+      setRemove()
     }
   },[remove]);
 
@@ -53,7 +49,6 @@ export default function RecentRequests() {
     <>
        {!results && <div>Your recent requests Will be shown here.</div>}
        <ImageList sx={{ width: '100%', height: 850 }} cols={1} >
-{/* rowHeight={180} */}
        {results && results.map((res,ind)=><ImageListItem><HostCard hostReq={res} index={ind} removeMe={setRemove} /></ImageListItem>)}
        </ImageList>
     </>)

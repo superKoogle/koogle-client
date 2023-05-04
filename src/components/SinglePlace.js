@@ -7,7 +7,7 @@ import ButtonBase from '@mui/material/ButtonBase';
 import LaunchIcon from '@mui/icons-material/Launch';
 import Button from '@mui/material/Button';
 import CustomizedButton from './Button'
-import { CardMedia , Card} from '@mui/material';
+import { CardMedia , Card, Box} from '@mui/material';
 
 const Img = styled('img')({
   margin: 'auto',
@@ -27,28 +27,23 @@ export default function SinglePlace({ name, address, hours, img, type, id, setSe
   return (
     <Card
       sx={{
-        p: 2,
+        height: 150,
+        width:'100%',
         margin: '20px auto',
         maxWidth: 500,
-        flexGrow: 1,
+        display:'flex',
         backgroundColor: (theme) =>
           theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
       }}
     >
-      <Grid container spacing={2}>
-        <Grid item>
         <CardMedia
-        sx={{ width: 128, height: 128,borderRadius:1 }}
         component="img"
-        height="100%"
+        sx={{width:148}}
         image={`http://localhost:3500/images/${img}`}
-        title={name}
-        
+        alt={name}
       />
-        </Grid>
-        <Grid item xs={6} sm container>
-          <Grid item xs container direction="column" spacing={2}>
-            <Grid item xs>
+       <Box sx={{ display: 'flex', flexDirection: 'row' ,alignItems: 'space-between', justifyItems:'flex-end'}}>
+         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', pl: 1, pb: 1  }}>
               <Typography gutterBottom variant="subtitle1" component="div">
                 {name}
               </Typography>
@@ -58,20 +53,14 @@ export default function SinglePlace({ name, address, hours, img, type, id, setSe
               <Typography variant="body2" color="text.secondary">
                {hours}
               </Typography>
-            </Grid>
-            <Grid item>
               <Typography sx={{ cursor: 'pointer' }} variant="body2">
                 {type}
               </Typography>
-            </Grid>
-          </Grid>
-          <Grid item>
-          <CustomizedButton text={"View details  "} onClick={(e)=>{handleClick(e)}} sign={<LaunchIcon></LaunchIcon>}>
-            <LaunchIcon></LaunchIcon>
-          </CustomizedButton>
-          </Grid>
-        </Grid>
-      </Grid>
+         </Box>
+          <Button sx={{ marginLeft: "auto" , marginRight:0}} onClick={(e)=>{handleClick(e)}} variant='contained'>
+            View&nbsp; &nbsp; <LaunchIcon></LaunchIcon>
+          </Button>
+          </Box>
     </Card>
   );
 }

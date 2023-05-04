@@ -37,7 +37,7 @@ useEffect(()=>{getLocation()},[])
       </Box>
       {location && <Grid container spacing={5}>
         <Grid item xs={4} sx={{}}>
-          <Map location={location} width={'400px'} height={'400px'} m={12} markers={results.map(p => {return {lat:p.place_lat, lng:p.place_lng}})}/>
+          <Map location={location} width={'400px'} height={'400px'} m={12} markers={results.filter(place=>place.distance<=range).map(p => {return {lat:p.place_lat, lng:p.place_lng}})}/>
         </Grid>
         <Grid item xs={8}>
           <Results location={location} range={range} results={results} setResults={setResults}/>

@@ -67,16 +67,17 @@ export default function Host({ avigail }) {
         if (response?.ok) {
           console.log("succeeded")
           const options = await response.json();
-          console.log(options);
+          console.log("in fecth "+ options);
         }
       else {
         console.log("err");
       } 
          console.log("in request")
-         console.log(values.host_type);
+         console.log("hostype "+values.host_type);
     }
   });
-console.log({validationFlag});
+  console.log("type of host "+avigail)
+console.log("choose dates "+validationFlag);
 
 if (!avigail) return null
   return (

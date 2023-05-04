@@ -5,7 +5,7 @@ import NearMeDisabledIcon from '@mui/icons-material/NearMeDisabled';
 
 
 function Map({ location, height, width, zoomy , showDirection, userLocation, m, markers}) {
-  const [zoom, setZoom] = React.useState(18);
+  const [zoom, setZoom] = React.useState(14);
   const [route, setRoute] = React.useState();
 
   console.log(showDirection);

@@ -19,9 +19,8 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function Results({ location, range,results, setResults }) {
   const navigate = useNavigate();
-  
   const [selected, setSelected] = useState(-1);
-
+  
 
   const getResults = async () => {
     const places = await getPlaces(location);
@@ -35,18 +34,16 @@ export default function Results({ location, range,results, setResults }) {
   useEffect(() => {
    if(selected!=-1)
       navigate(`/placeDetails?lat=${location.lat}&lng=${location.lng}&idx=${selected}`); 
-  },
-    [selected])
+  },[selected])
+
 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        {results.length > 0 ? results.filter(place => place.distance <= range)
-          .map((place, i) => {
-            return <Grid item xs={6}>
-
+        {results.length > 0 ? results.filter(place=>place.distance<=range)
+        .map((place, i) => {   
+           return <Grid item xs={6}>
               <SinglePlace name={place.place_name} address={place.place_address} hours={place.place_hours} img={place.place_img} type={place.type} id={i} setSelected={setSelected} />
-
             </Grid>
           }) : <h4>Sorry. no places found in your area.</h4>}
       </Grid>

@@ -7,7 +7,7 @@ import { Grid,Box } from '@mui/material';
 import Example from './example';
 
 export default function HostorStay() {
-    const [typeOfHost, setTypeOfHost] = useState(1);
+    const [typeOfHost, setTypeOfHost] = useState();
 
     return (
     <>
