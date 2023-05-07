@@ -6,7 +6,7 @@ import CustomizedButton from '../../components/Button';
 import { Formik, useFormik } from 'formik';
 import * as yup from 'yup';
 import Picture from '../upload/picture';
-import {Card} from '@mui/material';
+import { Card } from '@mui/material';
 
 const Synagogue = () => {
     const [picture, setPicture] = React.useState("");
@@ -41,7 +41,7 @@ const Synagogue = () => {
     return (
         <>
             <form onSubmit={formik.handleSubmit}>
-                <Card sx={{margin:'auto', marginTop: 9, padding: 5, width:'70%'}}>
+                <Card sx={{ margin: 'auto', marginTop: 9, padding: 5, width: '70%' }}>
                     <Grid container spacing={2}>
                         <Grid xs={4} item>
                             <TextField
@@ -77,7 +77,7 @@ const Synagogue = () => {
                             />
                         </Grid>
                         <Grid xs={4} item>
-                            <FormControl sx={{ width:'100%' }}>
+                            <FormControl sx={{ width: '100%' }}>
                                 <InputLabel id="_nusach">nusach</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-label"
@@ -97,13 +97,14 @@ const Synagogue = () => {
                         </Grid>
                         <Grid xs={4} item>
                             <Picture picture={picture} setPicture={setPicture} />
+                        </Grid>
+                        <Grid item xs={12} justifyContent='center' >
+                            <CustomizedButton onClick={formik.handleSubmit} text='Submit' />
+                        </Grid>
                     </Grid>
-                    <Grid item xs={12} justifyContent='center' >
-                        <CustomizedButton onClick={formik.handleSubmit} text='Submit' />
-                    </Grid>
-                </Grid>
-            </Card>
-        </form>
-                  </>)}
+                </Card>
+            </form>
+        </>)
+}
 
 export default Synagogue

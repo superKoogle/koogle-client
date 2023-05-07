@@ -1,7 +1,6 @@
 import React from 'react';
 import Carousel from 'react-material-ui-carousel'
 import { Paper, Button } from '@mui/material'
-import { Image } from '@mui/icons-material';
 
 
 export default function Example()
@@ -46,8 +45,6 @@ export default function Example()
     ]
 
     return (
-
-
         <Carousel animation='slide' duration={2500}>
             {
                 items.map( (item, i) => <Item key={i} item={item} sx={{height:"100%"}}/> )
@@ -61,7 +58,7 @@ function Item(props)
     return (
         <Paper className="carousel-image" sx={{flexFlow:"column", backgroundImage:`url(${props.item.image})` , backgroundSize:"100% 100%" }}>
             <h2>{props.item.name}</h2>
-            <p style={{height:"400px"}}>{props.item.description}</p>
+            <p style={{height:"300px"}}>{props.item.description}</p>
         </Paper>
     )
 }
