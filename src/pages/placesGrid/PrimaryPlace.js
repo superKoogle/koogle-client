@@ -26,7 +26,7 @@ export default function PrimaryPlace({ place, userLocation }) {
           {place?.type}<br />{place?.place_address}<br />{place?.place_hours}<br />
         </Typography>
       </CardContent>
-      <div style={{ height: "430px" , marginTop:"30px"}}>
+      <div style={{ height: "350px" , marginTop:"30px"}}>
         {place && 
         <Map height={"210px"} width={"100%"} location={{ lat: place.place_lat, lng: place.place_lng }} zoomy={16} showDirection={true} userLocation={userLocation}></Map>
         }

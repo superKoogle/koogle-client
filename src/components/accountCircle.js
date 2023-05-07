@@ -14,7 +14,6 @@ export default function AccountCircleIcon() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const {logout, currentUser} = React.useContext(AuthContext);
-  ////////////////////////////////////////////////////
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -37,11 +36,11 @@ export default function AccountCircleIcon() {
         aria-haspopup="true"
         onClick={handleMenu}
         color="inherit"
-        sx={{fontSize:40, marginTop:"8px"}}
+        sx={{fontSize:40, marginTop:"8px", color:'#fffef4'}}
       >
         <AccountCircle />
       </IconButton>
-      {currentUser && <Typography>{`${currentUser.user_fname} ${currentUser.user_lname}`}</Typography>}
+      {currentUser && <Typography sx={{color:'#fffef4'}}>{currentUser.user_name}</Typography>}
       <Menu
         id="menu-appbar"
         anchorEl={anchorEl}

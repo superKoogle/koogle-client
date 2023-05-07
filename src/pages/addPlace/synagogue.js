@@ -41,11 +41,9 @@ const Synagogue = () => {
     return (
         <>
             <form onSubmit={formik.handleSubmit}>
-                <Card sx={{ minWidth: 275, margin: 9, padding: 5 }}>
-                    <Grid container spacing={3} justifyContent='center'>
-
-                        <Grid xs={3} item>
-
+                <Card sx={{margin:'auto', marginTop: 9, padding: 5, width:'70%'}}>
+                    <Grid container spacing={2}>
+                        <Grid xs={4} item>
                             <TextField
                                 id="name"
                                 name="name"
@@ -56,7 +54,7 @@ const Synagogue = () => {
                                 helperText={formik.touched.name && formik.errors.name}
                             />
                         </Grid>
-                        <Grid xs={3} item>
+                        <Grid xs={4} item>
                             <  TextField
                                 id="address"
                                 name="address"
@@ -67,7 +65,7 @@ const Synagogue = () => {
                                 helperText={formik.touched.address && formik.errors.address}
                             />
                         </Grid>
-                        <Grid xs={3} item>
+                        <Grid xs={4} item>
                             <  TextField
                                 id="hours"
                                 name="hours"
@@ -78,8 +76,8 @@ const Synagogue = () => {
                                 helperText={formik.touched.hours && formik.errors.hours}
                             />
                         </Grid>
-                        <Grid xs={3} item>
-                            <FormControl sx={{ minWidth: 170 }}>
+                        <Grid xs={4} item>
+                            <FormControl sx={{ width:'100%' }}>
                                 <InputLabel id="_nusach">nusach</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-label"
@@ -97,7 +95,7 @@ const Synagogue = () => {
                                 </Select>
                             </FormControl>
                         </Grid>
-                        <Grid xs={3} item>
+                        <Grid xs={4} item>
                             <Picture picture={picture} setPicture={setPicture} />
                     </Grid>
                     <Grid item xs={12} justifyContent='center' >

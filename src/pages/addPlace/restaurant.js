@@ -49,10 +49,10 @@ const Restaurant = () => {
   return (
     <>
       <form onSubmit={formik.handleSubmit}>
-        <Card sx={{ minWidth: 275 , margin:9, padding:5}}>
-        <Grid container spacing={3} justifyContent='center'>
+        <Card sx={{margin:'auto', marginTop: 9, padding: 5, width:'70%'}}>
+        <Grid container spacing={3}>
          
-<Grid xs={3} item>
+<Grid xs={4} item>
             <TextField
               id="name"
               name="name"
@@ -63,7 +63,7 @@ const Restaurant = () => {
               error={formik.touched.name && Boolean(formik.errors.name)}
               helperText={formik.touched.name && formik.errors.name}
             /></Grid>
-            <Grid xs={3} item>
+            <Grid xs={4} item>
             <  TextField
               id="address"
               name="address"
@@ -74,7 +74,7 @@ const Restaurant = () => {
               error={formik.touched.address && Boolean(formik.errors.address)}
               helperText={formik.touched.address && formik.errors.address}
             /></Grid>
-            <Grid xs={3} item>
+            <Grid xs={4} item>
             <  TextField
               id="hours"
               name="hours"
@@ -84,7 +84,7 @@ const Restaurant = () => {
               error={formik.touched.hours && Boolean(formik.errors.hours)}
               helperText={formik.touched.hours && formik.errors.hours}
             /></Grid>
-            <Grid xs={3} item>
+            <Grid xs={4} item>
             <  TextField
               id="siteLink"
               name="siteLink"
@@ -94,7 +94,7 @@ const Restaurant = () => {
               error={formik.touched.siteLink && Boolean(formik.errors.siteLink)}
               helperText={formik.touched.siteLink && formik.errors.siteLink}
             /></Grid>
-            <Grid xs={3} item>
+            <Grid xs={4} item>
             <  TextField
               id="phone"
               name="phone"
@@ -104,8 +104,19 @@ const Restaurant = () => {
               error={formik.touched.phone && Boolean(formik.errors.phone)}
               helperText={formik.touched.phone && formik.errors.phone}
             /></Grid>
-            <Grid xs={3} item>
-            <FormControl sx={{ minWidth: 170 }}>
+            <Grid xs={4} item>
+            <  TextField
+              id="kosher"
+              name="kosher"
+              type="string"
+              label="kosher"
+              required
+              onChange={formik.handleChange}
+              error={formik.touched.kosher && Boolean(formik.errors.kosher)}
+              helperText={formik.touched.kosher && formik.errors.kosher}
+            /></Grid>
+            <Grid xs={4} item>
+            <FormControl sx={{ width:'100%' }}>
               <InputLabel id="_nusach">type</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -123,18 +134,7 @@ const Restaurant = () => {
               </Select>
             </FormControl>
             </Grid>
-            <Grid xs={3} item>
-            <  TextField
-              id="kosher"
-              name="kosher"
-              type="string"
-              label="kosher"
-              required
-              onChange={formik.handleChange}
-              error={formik.touched.kosher && Boolean(formik.errors.kosher)}
-              helperText={formik.touched.kosher && formik.errors.kosher}
-            /></Grid>
-            <Grid xs={3} item>
+            <Grid xs={4} item>
             <Rating 
             id='stars'
             value={formik.values.stars}
@@ -143,9 +143,11 @@ const Restaurant = () => {
             onChange={formik.handleChange}
             helperText={formik.touched.stars && formik.errors.stars}
              /></Grid>
+              <Grid xs={4} item>
           <Picture picture={picture} setPicture={setPicture}/>
+          </Grid>
           <Grid item xs={12} justifyContent='center' >
-            <CustomizedButton onClick={formik.handleSubmit} text='Submit' />
+            <CustomizedButton onClick={formik.handleSubmit} text='Submit'/>
           </Grid>
         </Grid>
         </Card>

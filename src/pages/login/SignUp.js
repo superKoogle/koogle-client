@@ -97,7 +97,7 @@ const SignUp = () => {
             </div>
             {err && <><span style={{ color: 'red' }}>{err}</span><br /><br /></>}
             <div className="group">
-                <input id="signUpBtn" type="submit" className="button" value="Sign Up" onClick={Register} disabled={!ok} />
+                <input id="signUpBtn" type="submit" className="button"  value="Sign Up" onClick={Register} disabled={!ok} />
             </div>
             <div className="hr"></div>
             <div className="foot-lnk">
@@ -106,5 +106,17 @@ const SignUp = () => {
         </div>
     )
 }
+
+
+/*    <style>
+        li{
+            cursor: pointer;
+			margin: 15px 0;
+        }
+    </style>
+    style={{cursor:'pointer', margin:'15px'}} */ 
+
+
+
 
 export default SignUp;

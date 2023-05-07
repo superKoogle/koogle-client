@@ -42,7 +42,7 @@ export default function Results({ location, range,results, setResults }) {
       <Grid container spacing={2}>
         {results.length > 0 ? results.filter(place=>place.distance<=range)
         .map((place, i) => {   
-           return <Grid item xs={6}>
+           return <Grid item xs={6} key={i}>
               <SinglePlace name={place.place_name} address={place.place_address} hours={place.place_hours} img={place.place_img} type={place.type} id={i} setSelected={setSelected} />
             </Grid>
           }) : <h4>Sorry. no places found in your area.</h4>}

@@ -4,7 +4,11 @@ import HostCard from '../../components/HostCard';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import { AuthContext } from '../../context/authContext';
+import PropTypes from "prop-types";
 
+ImageList.propTypes = {
+  children: ()=>{return null}
+}
 
 export default function RecentRequests() {
   const [results, setResults] = React.useState();
@@ -48,9 +52,9 @@ export default function RecentRequests() {
   return (
     <>
        {!results && <div>Your recent requests Will be shown here.</div>}
-       <ImageList sx={{ width: '100%', height: 850 }} cols={1} >
-       {results && results.map((res,ind)=><ImageListItem><HostCard hostReq={res} index={ind} removeMe={setRemove} /></ImageListItem>)}
+       <ImageList sx={{ width: '100%'}} cols={1} >
+       {results && results.map((res,ind)=><ImageListItem key={ind}><HostCard hostReq={res} index={ind} removeMe={setRemove} /></ImageListItem>)}
        </ImageList>
     </>)
-
 }
+

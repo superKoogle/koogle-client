@@ -4,51 +4,52 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { NavLink, useNavigate } from 'react-router-dom'
 import AccountCircleIcon from "./accountCircle";
-import { Grid, Typography } from '@mui/material';
+import { Grid, Typography, Button, Alert } from '@mui/material';
 import Koogle from './Koogle';
+import { indigo } from '@mui/material/colors';
+import { AuthContext } from '../context/authContext';
+import InfoAlert from './InfoAlert';
+
 
 export default function NavTabs() {
-  const [value, setValue] = React.useState(0);
+  const [notLoggedIn, setNotLoggedIn] = React.useState(false);
+  const { currentUser } = React.useContext(AuthContext);
 
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  const buttonStyle = {
+    color: 'white',
+    marginTop: 3,
+    '&:active': {
+      background: indigo[800],
+    },
+    marginLeft: 4,
+    "&.Mui-disabled": {
+      color: 'disabled'
+    }
+  }
 
   return (
     <>
-
-
-      {/* {<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>} */}
-
-      <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+      <Box sx={{ width: '100%', bgcolor: indigo[400], marginBottom: '0px' }}>
         <Grid container>
-          <Grid item xs={3}>
-            <Koogle></Koogle>
+          <Grid item xs={2}>
+            <a href='/'><Koogle/></a>
           </Grid>
-          <Grid item xs={7}>
-           {/* <Tabs value={value} onChange={handleChange} aria-label="nav tabs example" centered>
-              <Tab label="koogle" value={0} to="/" component={NavLink}><NavLink to="/" ></NavLink></Tab>
-              <Tab label="Sign In" value={1} to="/login" component={NavLink}><NavLink to="/login"></NavLink></Tab>
-              <Tab label="Host" value={2} to="/host" component={NavLink}><NavLink to="/host"></NavLink></Tab>
-               <NavLink label="add place" to="/addPlace" /> 
-           </Tabs>*/}
-           
-             <NavLink to="/" >koogle</NavLink>&nbsp;&nbsp;
-             <NavLink to="/login">login</NavLink>&nbsp;&nbsp;
-             <NavLink to="/host">host</NavLink>&nbsp;&nbsp;
-             <NavLink to="/addPlace">add place</NavLink>
-              {/* <NavLink label="add place" to="/addPlace" /> */}
-           
+          <Grid item xs={8}>
+            <Button component={NavLink} to="/" sx={buttonStyle}>Koogle</Button>
+            <Button component={NavLink} to="/login" sx={buttonStyle}>Login</Button>
+            <Button component={NavLink} to="/addPlace" sx={buttonStyle}>Places</Button>
+            <span onPointerEnter={currentUser?null:()=>{setNotLoggedIn(true)}}>
+           <Button component={NavLink} to="/host" sx={buttonStyle} disabled={!currentUser}>Hosts</Button>
+           </span>
           </Grid>
+          <br />
           <Grid item xs={2}>
             <AccountCircleIcon />
           </Grid>
         </Grid>
+        <hr style={{ color: indigo[500] }} />
       </Box>
-
-
-
+      {notLoggedIn && <InfoAlert message={"Please sign in to use this service."} action={setNotLoggedIn} severity="info"></InfoAlert>}
     </>
   );
 }

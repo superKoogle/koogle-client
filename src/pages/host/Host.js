@@ -12,7 +12,7 @@ import Item from './item';
 //var validationFlag = false;
 
 
-export default function Host({ avigail }) {
+export default function Host({ hostFlag }) {
   const [flag, setFlag] = React.useState(true);
   const [validationFlag,setValidationFlag]=React.useState();
 
@@ -42,7 +42,7 @@ export default function Host({ avigail }) {
       host_always: flag,
       host_max_guests: '1',
       host_min_age: '0',
-      host_type: avigail,
+      host_type: hostFlag,
       host_start_date:null,
       host_end_date:null
      
@@ -62,7 +62,7 @@ export default function Host({ avigail }) {
             'Content-Type': 'application/json',
             'authorization': `Bearer ${token}`
           },
-          body: JSON.stringify({...values, host_type:avigail}) })
+          body: JSON.stringify({...values, host_type:hostFlag}) })
        
         if (response?.ok) {
           console.log("succeeded")
@@ -72,14 +72,14 @@ export default function Host({ avigail }) {
       else {
         console.log("err");
       } 
-         console.log("in request")
-         console.log("hostype "+values.host_type);
+        //  console.log("in request")
+        //  console.log("hostype "+values.host_type);
     }
   });
-  console.log("type of host "+avigail)
-console.log("choose dates "+validationFlag);
+//   console.log("type of host "+hostFlag)
+// console.log("choose dates "+validationFlag);
 
-if (!avigail) return null
+if (!hostFlag) return null
   return (
 
     <div style={{ width: '100%'}}
@@ -92,7 +92,7 @@ if (!avigail) return null
         flexDirection: 'column',
       }}
     >
-      {(!flag || avigail==2) &&<Item><TextField
+      {(!flag || hostFlag==2) &&<Item><TextField
           id="host_start_date"
           name="host_start_date"
           label="from"
@@ -103,7 +103,7 @@ if (!avigail) return null
           helperText={formik.touched.host_start_date && formik.errors.host_start_date}
           
         /></Item>}
-      {(!flag  || avigail==2 )&&<Item>
+      {(!flag  || hostFlag==2 )&&<Item>
         <TextField
           id="host_end_date"
           name="host_end_date"
@@ -160,7 +160,7 @@ if (!avigail) return null
           helperText={formik.touched.host_type && formik.errors.host_type}
         />
       
-        {avigail==1 && <RadioButtonsGroup flag={setFlag} validFlag={setValidationFlag}></RadioButtonsGroup>}
+        {hostFlag==1 && <RadioButtonsGroup flag={setFlag} validFlag={setValidationFlag}></RadioButtonsGroup>}
         <CustomizedButton onClick={formik.handleSubmit} color="primary" variant="contained" fullWidth text={"Submit"} />
         </Box>
       </form>

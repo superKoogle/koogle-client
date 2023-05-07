@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Checkbox from '@mui/material/Checkbox';
-import { FormControlLabel, FormGroup, Grid } from '@mui/material';
+import { FormControlLabel, FormGroup, Grid, Typography } from '@mui/material';
 import SynagogueIcon from '@mui/icons-material/Synagogue';
 import SynagogueOutlinedIcon from '@mui/icons-material/SynagogueOutlined';
 import TapasIcon from '@mui/icons-material/Tapas';
@@ -20,7 +20,9 @@ export default function IconCheckboxes({setChanged}) {
   }
 
   return (
-    <Grid container spacing={3} justifyItems='center' sx={{textAlign:'center', margin:'auto'}}>
+    <>
+    <Typography variant='h5'>Filter by Categories: </Typography>
+    <Grid container spacing={3} justifyItems='center' sx={{textAlign:'center', margin:'auto'}} justifyContent='center'>
       <Grid item>
       <FormControlLabel control={<Checkbox {...label} icon={<SynagogueOutlinedIcon sx={{color:indigo[700]}}/>} checkedIcon={<SynagogueIcon sx={{color:indigo[700]}}/>} id={'1'} onChange={(e)=>{filter(e.target.id)}}/>} label="Synagogue" />
       </Grid>
@@ -31,5 +33,7 @@ export default function IconCheckboxes({setChanged}) {
       <FormControlLabel control={<Checkbox {...label} icon={<LocalGroceryStoreOutlinedIcon sx={{color:indigo[700]}}/>} checkedIcon={<LocalGroceryStoreIcon sx={{color:indigo[700]}}/>} id={'3'} onChange={(e)=>{filter(e.target.id)}}/>} label="SuperMarkets" />
       </Grid>
     </Grid>
+    <hr/>
+    </>
   );
 }

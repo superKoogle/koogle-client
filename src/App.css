@@ -13,6 +13,7 @@
 .carousel-image:hover{
   transform: scale(1.4);
   transition: 1s;
+
   
 }
 
@@ -30,7 +31,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 .App-link {
@@ -44,4 +45,11 @@
   to {
     transform: rotate(360deg);
   }
+}
+.paragraph{
+  font-family:'fantasy';
+  color: blueviolet;
+  font-style: oblique;
+ font-weight: '5000';
+
 }

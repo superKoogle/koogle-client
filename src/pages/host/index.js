@@ -14,11 +14,10 @@ export default function HostorStay() {
     <Example></Example>
      <Grid container>
       <Grid item xs={8}>
-        <CustomizedButton text={"I want to host"} onClick={()=>{setTypeOfHost(1)}}/>
+        <br/>
+        <CustomizedButton text={"I want to host"}  onClick={()=>{setTypeOfHost(1)}}/>
         <CustomizedButton text={"I want to stay"} onClick={()=>{setTypeOfHost(2)}}/>      
-       
-
-        <Host avigail={typeOfHost}/>
+        <Host hostFlag={typeOfHost}/>
 </Grid>
 <Grid item xs={4}>
         <RecentRequests/>

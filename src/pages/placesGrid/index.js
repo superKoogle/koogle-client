@@ -63,8 +63,8 @@ const PlacesDetails = ({ }) => {
         <Grid container spacing={0}>
             <Grid item xs={6} md={9}>
                 <Grid container spacing={2}>
-                    {places?.filter((p) => {console.log("ppplllooo",filterTypes); return (filterTypes[parseInt(p.place_type)-1]==true)}).map((place, i) =>
-                        <SinglePlace name={place.place_name} address={place.place_address} hours={place.place_hours} img={place.place_img} type={place.type} id={i} setSelected={setSelected} />
+                    {places?.filter((p) => {return (filterTypes[parseInt(p.place_type)-1]==true)}).map((place, i) =>
+                        <SinglePlace key={i} name={place.place_name} address={place.place_address} hours={place.place_hours} img={place.place_img} type={place.type} id={i} setSelected={setSelected} />
                     )}
                 </Grid>
             </Grid>

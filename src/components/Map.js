@@ -4,7 +4,7 @@ import NearMeDisabledIcon from '@mui/icons-material/NearMeDisabled';
 
 
 
-function Map({ location, height, width, zoomy , showDirection, userLocation, m, markers}) {
+function Map({ location, height, width, zoomy, showDirection, userLocation, m, markers }) {
   const [zoom, setZoom] = React.useState(14);
   const [route, setRoute] = React.useState();
 
@@ -17,15 +17,16 @@ function Map({ location, height, width, zoomy , showDirection, userLocation, m, 
       },
       body: JSON.stringify({ source_lat: userLocation.lat, source_lng: userLocation.lng, dest_lat: location.lat, dest_lng: location.lng })
     })
-    if(res.ok){
+    if (res.ok) {
       const dir = await res.json();
       setRoute(dir);
     }
   }
 
-  React.useEffect(()=>{
-    getDirection();
-   },[location])
+  React.useEffect(() => {
+    if (showDirection == true)
+      getDirection();
+  }, [location])
 
   const containerStyle = {
     margin: 'auto',
@@ -57,20 +58,20 @@ function Map({ location, height, width, zoomy , showDirection, userLocation, m, 
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
-      {showDirection && route && <DirectionsRenderer directions={route}/>}
+      {showDirection && route && <DirectionsRenderer directions={route} />}
       { /* Child components, such as markers, info windows, etc. */}
       <>
         <MarkerF
           key={0}
           position={location}
         ></MarkerF>
-        {markers && markers.map((marker, i) => 
-           <MarkerF
-           key={i+1}
-           position={marker}
-           icon={'/pics/pin3.png'}
-         ></MarkerF>
-          )}
+        {markers && markers.map((marker, i) =>
+          <MarkerF
+            key={i + 1}
+            position={marker}
+            icon={'/pics/pin3.png'}
+          ></MarkerF>
+        )}
       </>
     </GoogleMap>
   ) : <></>

@@ -4,13 +4,12 @@ import { Paper, Button } from '@mui/material'
 import { Image } from '@mui/icons-material';
 
 
-export default function Example(props)
+export default function Example()
 {
     var items = [
         {
             name: "1 theh best place for hosting",
             description: "theh best place for hosting",
-            // http://localhost:3000/host
             image:"http://localhost:3500/images/room1.jpg"
         },
         {
@@ -49,7 +48,7 @@ export default function Example(props)
     return (
 
 
-        <Carousel animation='slide' duration={1300}>
+        <Carousel animation='slide' duration={2500}>
             {
                 items.map( (item, i) => <Item key={i} item={item} sx={{height:"100%"}}/> )
             }
