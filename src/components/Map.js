@@ -38,7 +38,7 @@ function Map({ location, height, width, zoomy, showDirection, userLocation, m, m
   const [map, setMap] = React.useState(null);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyBDDTWz13N0ciKyZ15H7eZueA8yoPAl7mI"
+    googleMapsApiKey: MY_GOOGLE_MAPS_API_KEY
   })
 
   const onLoad = React.useCallback(function callback(map) {
