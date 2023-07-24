@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from 'react-router-dom'
 import SinglePlace from "../../../components/SinglePlace";
-import { getPlaces } from "../../../fetchPlaces";
+import { getPlaces } from "../../fetchPlaces";
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -33,14 +33,14 @@ export default function Results({ location, range,results, setResults }) {
 
   useEffect(() => {
    if(selected!=-1)
-      navigate(`/placeDetails?lat=${location.lat}&lng=${location.lng}&idx=${selected}`); 
+      navigate(`/placeDetails?lat=${location.lat}&lng=${location.lng}&index=${selected}`); 
   },[selected])
 
-
+  
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        {results.length > 0 ? results.filter(place=>place.distance<=range)
+        {results.length > 0 ? results.filter(place=>place.distance<=range).slice(0,5)
         .map((place, i) => {   
            return <Grid item xs={6} key={i}>
               <SinglePlace name={place.place_name} address={place.place_address} hours={place.place_hours} img={place.place_img} type={place.type} id={i} setSelected={setSelected} />

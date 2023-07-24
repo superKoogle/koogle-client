@@ -18,7 +18,8 @@ export default function InfoAlert({message, action, severity}) {
     if (reason === 'clickaway') {
       return;
     }
-    action(false);
+    if(action)
+      action(false);
     setOpen(false);
   };
 
@@ -28,9 +29,7 @@ export default function InfoAlert({message, action, severity}) {
         <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }} anchorOrigin={{ vertical:10, horizontal:10 }}>
           {message}
         </Alert>
-        
       </Snackbar>
-      
     </Stack>
   );
 }

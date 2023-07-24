@@ -77,7 +77,7 @@ const Synagogue = () => {
                             />
                         </Grid>
                         <Grid xs={4} item>
-                            <FormControl sx={{ width: '100%' }}>
+                            <FormControl sx={{width:'100%', padding:'16px 0px 0px 16px'}}>
                                 <InputLabel id="_nusach">nusach</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-label"
@@ -98,6 +98,7 @@ const Synagogue = () => {
                         <Grid xs={4} item>
                             <Picture picture={picture} setPicture={setPicture} />
                         </Grid>
+                        <Grid xs={4} item><div>aaa</div></Grid>
                         <Grid item xs={12} justifyContent='center' >
                             <CustomizedButton onClick={formik.handleSubmit} text='Submit' />
                         </Grid>

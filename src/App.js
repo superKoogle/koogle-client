@@ -6,9 +6,7 @@ import PlacesDetails from "./pages/placesGrid";
 import Nav from "./components/Nav";
 import HostorStay from "./pages/host";
 import { AuthContextProvider } from "./context/authContext";
-import Picture from "./pages/upload/picture";
-import AnotherNav from "./components/anotherNav";
-import Example from "./pages/host/example";
+import Manager from "./pages/manager";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { indigo } from "@mui/material/colors";
 
@@ -36,8 +34,7 @@ function App() {
                   <Route path="/addPlace" element={<AddPlace />} />
                   <Route path="/placeDetails" element={<PlacesDetails />} />
                   <Route path="/host" element={<HostorStay/>} />
-                  <Route path="/picture" element={<Picture/>}/>
-                  <Route path="/example" element={<Example/>}/>
+                  <Route path="/manage" element={<Manager/>}/>
               </Routes>
             {/* </Box > */}
             {/* </Box > */}

@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { indigo } from '@mui/material/colors';
 
-export default function Location({ setLocation }) {
+export default function Location({ setLocation, location }) {
     const [address, setAddress] = useState();
     const [suggestions, setSuggestions] = useState([]);
     const getSuggestions = async () => {
@@ -38,6 +38,22 @@ export default function Location({ setLocation }) {
         }
     }
 
+    const getAddress = async()=>{
+        console.log("get address for",location);
+        const response = await fetch('http://localhost:3500/api/maps/reverseGeocode', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({lat: location.lat, lng: location.lng})
+    })
+    const data = await response.json();
+    console.log(data.results[0].formatted_address);
+    setAddress(data.results[0].formatted_address);
+    }
+
+    useEffect(()=>{getAddress()},[])
+
     useEffect(() => { getSuggestions() }, [address]);
     return (
         <>
@@ -46,9 +62,13 @@ export default function Location({ setLocation }) {
                 color={indigo[700]}
                 id="free-solo-demo"
                 freeSolo
+                defaultValue={address}
                 options={suggestions}
                 onChange={e => { findLocation(e.target.innerHTML) }}
-                renderInput={(params) => <TextField {...params} label="Your location" onChange={e => setAddress(e.target.value)} />}
+                renderInput={(params) => <TextField 
+                    {...params}
+                    label="Your location"
+                    onChange={e => setAddress(e.target.value)} />}
             />
         </>
     );

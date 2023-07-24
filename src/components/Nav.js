@@ -29,7 +29,7 @@ export default function NavTabs() {
 
   return (
     <>
-      <Box sx={{ width: '100%', bgcolor: indigo[400], marginBottom: '0px' }}>
+      <Box  sx={{ width: '100%', bgcolor: indigo[400], marginBottom: '0px'/*, position:'fixed', zIndex:50 */}}>
         <Grid container>
           <Grid item xs={2}>
             <a href='/'><Koogle/></a>
@@ -38,6 +38,7 @@ export default function NavTabs() {
             <Button component={NavLink} to="/" sx={buttonStyle}>Koogle</Button>
             <Button component={NavLink} to="/login" sx={buttonStyle}>Login</Button>
             <Button component={NavLink} to="/addPlace" sx={buttonStyle}>Places</Button>
+            {currentUser?.user_permission=='ADMIN' && <Button component={NavLink} to="/manage" sx={buttonStyle}>Manage</Button>}
             <span onPointerEnter={currentUser?null:()=>{setNotLoggedIn(true)}}>
            <Button component={NavLink} to="/host" sx={buttonStyle} disabled={!currentUser}>Hosts</Button>
            </span>

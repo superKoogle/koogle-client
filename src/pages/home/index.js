@@ -20,9 +20,8 @@ const Home = () => {
       console.log("Geolocation is not supported by this browser.");
     }
   }
-  function showPosition(position) {
-    console.log(position.coords.latitude);
-    console.log(position.coords.longitude); 
+  async function showPosition(position) {
+    console.log(position); 
     console.log("location", {lat: position.coords.latitude, lng: position.coords.longitude});
     setLocation({lat: position.coords.latitude, lng: position.coords.longitude});
   }
@@ -32,16 +31,14 @@ var myText="Welcome to the Google site!Here you can get to know your surrounding
   return (
     <>
      <TypographyP text={myText}></TypographyP> 
-
       <Box sx={{ width: '100%' }}>
-        <Location setLocation={setLocation} />
+        <Location setLocation={setLocation} location={location}/>
         <Box sx={{ textAlign: 'center', width: '100%' }}>
           <CustomizedSlider action={setRange}/>
         </Box>
       </Box>
       {location && <Grid container spacing={5}>
         <Grid item xs={4} sx={{}}>
-          
           <Map location={location} width={'400px'} height={'400px'} m={12} markers={results.filter(place=>place.distance<=range).map(p => {return {lat:p.place_lat, lng:p.place_lng}})}/>
         </Grid>
         <Grid item xs={8}>

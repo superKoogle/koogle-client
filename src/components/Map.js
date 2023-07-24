@@ -59,7 +59,6 @@ function Map({ location, height, width, zoomy, showDirection, userLocation, m, m
       onUnmount={onUnmount}
     >
       {showDirection && route && <DirectionsRenderer directions={route} />}
-      { /* Child components, such as markers, info windows, etc. */}
       <>
         <MarkerF
           key={0}

@@ -51,10 +51,10 @@ export default function RecentRequests() {
 
   return (
     <>
-       {!results && <div>Your recent requests Will be shown here.</div>}
-       <ImageList sx={{ width: '100%'}} cols={1} >
-       {results && results.map((res,ind)=><ImageListItem key={ind}><HostCard hostReq={res} index={ind} removeMe={setRemove} /></ImageListItem>)}
-       </ImageList>
+       {!results? <div>Your recent requests Will be shown here.</div>:
+       <ImageList sx={{ width: '100%'}} cols={1}>
+        {results.map((res,ind)=><ImageListItem key={ind}><HostCard hostReq={res} index={ind} removeMe={setRemove} /></ImageListItem>)}
+       </ImageList>}
     </>)
 }
 

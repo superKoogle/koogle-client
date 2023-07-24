@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { useState } from "react";
-import CustomizedButton from '../../components/Button'
-import { Grid } from '@mui/material';
 import Synagogue from './Synagogue';
 import BeitHabad from './BeitHabad';
 import Restaurant from './Restaurant';
@@ -10,7 +8,6 @@ import {Box, Tab} from '@mui/material';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { indigo } from '@mui/material/colors';
 
 
 export default function AddPlace() {

@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import React, { useEffect, useState } from 'react'
 import SinglePlace from '../../components/SinglePlace'
-import { getPlaces } from '../../fetchPlaces';
+import { getPlaces } from '../fetchPlaces';
 import PrimaryPlace from './PrimaryPlace';
 import IconCheckboxes from '../../components/filterTypes';
 
@@ -20,7 +20,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const PlacesDetails = ({ }) => {
     const [filterTypes, setFilterTypes] = useState([true, true, true, true]);
     const [changed, setChanged] = useState(-1);
-    const [selected, setSelected] = useState(-1);
+    const [selected, setSelected] = useState();
     const [places, setPlaces] = useState();
     const location = useLocation();
 
@@ -38,15 +38,19 @@ const PlacesDetails = ({ }) => {
 
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
-        setSelected(parseInt(searchParams.get('idx')));
         const userLocation = {lat:searchParams.get('lat'), lng:searchParams.get('lng')}; 
         getResults(userLocation);
     }, [])
 
+    useEffect(()=>{
+        const searchParams = new URLSearchParams(location.search);
+        const select = parseInt(searchParams.get('index'));
+        setSelected(select);
+    },[places])
+
     useEffect(() => {
         searchParams.set('idx', selected);
         location.search = searchParams.toString();
-        //console.log(location.toString())
     }, [selected])
 
     useEffect(()=>{
