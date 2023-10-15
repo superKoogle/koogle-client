@@ -12,8 +12,8 @@ const ColorButton = styled(Button)(({ theme }) => ({
     },
   }));
 
-  export default function CustomizedButton({text, onClick, sign}) {
+  export default function CustomizedButton({text, onClick, sign, style}) {
     return (
-        <ColorButton variant="contained" onClick={onClick} >{text}{sign && sign}</ColorButton>
+        <ColorButton variant="contained" onClick={onClick} sx={style}>{text}{sign && sign}</ColorButton>
     );
   }

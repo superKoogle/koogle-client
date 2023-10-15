@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import SignUp from './SignUp'
-import SignIn from './SignIn'
+import SignIn from './signIn'
 import './login.css'
 
 const Login = () => {

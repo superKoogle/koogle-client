@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useState } from "react";
-import Synagogue from './Synagogue';
+import Synagogue from './synagogue';
 import BeitHabad from './BeitHabad';
-import Restaurant from './Restaurant';
-import Supermarket from './Supermarket';
+import Restaurant from './restaurant';
+import Supermarket from './supermarket';
 import {Box, Tab} from '@mui/material';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
