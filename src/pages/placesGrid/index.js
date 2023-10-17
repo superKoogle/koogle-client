@@ -65,14 +65,14 @@ const PlacesDetails = ({ }) => {
     return (<>
     <IconCheckboxes setChanged={setChanged}/>
         <Grid container spacing={0}>
-            <Grid item xs={6} md={9}>
+            <Grid item xs={7} md={9}>
                 <Grid container spacing={2}>
                     {places?.filter((p) => {return (filterTypes[parseInt(p.place_type)-1]==true)}).map((place, i) =>
                         <SinglePlace key={i} name={place.place_name} address={place.place_address} hours={place.place_hours} img={place.place_img} type={place.type} id={i} setSelected={setSelected} />
                     )}
                 </Grid>
             </Grid>
-            <Grid item xs={6} md={3} >
+            <Grid item xs={5} md={3} >
                 <Item sx={{boxShadow:0, bgcolor:'#fffef4'}}>{places && <PrimaryPlace place={places[selected]} userLocation={userLocation}></PrimaryPlace>}</Item>
             </Grid>
         </Grid>

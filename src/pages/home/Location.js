@@ -58,7 +58,7 @@ export default function Location({ setLocation, location }) {
     return (
         <>
             <Autocomplete
-                sx={{ margin: "20px", color: indigo[700] }}
+                sx={{ m: "20px auto", color: indigo[700], width: "70%" }}
                 color={indigo[700]}
                 id="free-solo-demo"
                 freeSolo

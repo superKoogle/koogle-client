@@ -3,7 +3,7 @@ import { useState } from 'react';
 import CustomizedButton from '../../components/Button';
 import Host from './Host';
 import RecentRequests from './recentRequests';
-import { Grid, Box } from '@mui/material';
+import { Grid, Box, Button} from '@mui/material';
 import CarouselImg from './carousel';
 import { Height } from '@mui/icons-material';
 
@@ -14,10 +14,10 @@ export default function HostorStay() {
         <>
             <CarouselImg />
             <Grid container sx={{width:"100%"}}>
-                <Grid item sx={{ display: "grid", gap: 1 }} xs={8}>
-                    <Box sx={{ display: "flex", gap: 1 }}>
-                        <CustomizedButton text={"I want to host"} onClick={() => { setTypeOfHost(1); setSubmited(true) }} style={{Height:"40px"}}/>
-                        <CustomizedButton text={"I want to stay"} onClick={() => { setTypeOfHost(2); setSubmited(true) }}  style={{Height:"40px"}}/>
+                <Grid item xs={8}>
+                    <Box sx={{alignItems:"center"}}>
+                        <Button variant="contained" onClick={() => { setTypeOfHost(1); setSubmited(true) }} sx={{m: 3}}>I want to host</Button>
+                        <Button variant="contained" onClick={() => { setTypeOfHost(1); setSubmited(true) }} sx={{m: 3}}>I want to stay</Button>
                     </Box>
 
                     <Host setSubmit={setSubmited} isSubmit={submited} hostFlag={typeOfHost} />

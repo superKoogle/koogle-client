@@ -12,7 +12,7 @@ export default function PrimaryPlace({ place, userLocation }) {
   return (
     <Card sx={{ maxWidth: 360 }}  >
       <CardMedia
-        sx={{ height: 140 }}
+        sx={{ height: 130 }}
         component="img"
         height="194"
         image={place?.place_img ? `http://localhost:3500/images/${place.place_img}` : "/pics/default.jpg"}

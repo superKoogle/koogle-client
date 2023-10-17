@@ -11,9 +11,8 @@ function valueText(value) {
 export default function CustomizedSlider({action}) {
   const [range, setRange] = React.useState(33);
   return (
-    <Box sx={{ width: '70%', textAlign:'center' , marginLeft:'15%', marginTop:'3%'}}>
-      <Typography gutterBottom>distance range:</Typography>
-      <Typography gutterBottom>{valueText(range)}</Typography>
+    <Box sx={{ width: '70%', textAlign:'center', marginTop:'3%', m:'auto'}}>
+      <Typography gutterBottom>distance range:  {valueText(range)}</Typography>
       <Box sx={{ m: 'auto'}} />
       <Slider
       min={1}
@@ -55,12 +54,12 @@ export default function CustomizedSlider({action}) {
           transform: 'translate(50%, -100%) rotate(-45deg) scale(0)',
           '&:before': { display: 'none' },
           '&.MuiSlider-valueLabelOpen': {
-            transform: 'translate(50%, -100%) rotate(-45deg) scale(1)',
+            transform: 'translate(50%, -100%) rotate(-45deg) scale(1)'
           },
           '& > *': {
-            transform: 'rotate(45deg)',
-          },
-        },}}
+            transform: 'rotate(45deg)'
+          }
+        }}}
       />
     </Box>
   );

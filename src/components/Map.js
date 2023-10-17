@@ -1,5 +1,6 @@
 import React from 'react'
 import { GoogleMap, useJsApiLoader, MarkerF, DirectionsRenderer } from '@react-google-maps/api';
+import { shadows } from '@mui/system';
 import NearMeDisabledIcon from '@mui/icons-material/NearMeDisabled';
 
 
@@ -32,13 +33,15 @@ function Map({ location, height, width, zoomy, showDirection, userLocation, m, m
     margin: 'auto',
     marginTop: m || 0,
     width: width,
-    height: height
+    height: height,
+    borderRadius: "1%",
+    boxShadow: 2
   };
 
   const [map, setMap] = React.useState(null);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY
+    googleMapsApiKey: process.env.REACT_APP_API_KEY
   })
 
   const onLoad = React.useCallback(function callback(map) {

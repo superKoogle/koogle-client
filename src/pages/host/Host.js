@@ -4,7 +4,7 @@ import { Formik, useFormik } from 'formik';
 import * as yup from 'yup';
 import CustomizedButton from '../../components/Button';
 import RadioButtonsGroup from './radio';
-import { TextField } from '@mui/material';
+import { TextField, Button } from '@mui/material';
 import RecentRequests from './recentRequests';
 import Box, { BoxProps } from '@mui/material/Box';
 import Item from './item';
@@ -155,15 +155,15 @@ export default function Host({ setSubmit, isSubmit, hostFlag }) {
             name="host_type"
             type="number"
             placeholder='type'
-            // sx={{display:"none"}}
+            sx={{display:"none"}}//some problem here
             value={formik.values.host_type}
             onChange={formik.handleChange}
             error={formik.touched.host_type && Boolean(formik.errors.host_type)}
             helperText={formik.touched.host_type && formik.errors.host_type}
           />
 
-          {hostFlag == 1 && <RadioButtonsGroup flag={setFlag} validFlag={setValidationFlag}></RadioButtonsGroup>}
-          <CustomizedButton onClick={formik.handleSubmit} color="primary" variant="contained" fullWidth text={"Submit"} />
+          {hostFlag == 1 && <RadioButtonsGroup flag={setFlag} validFlag={setValidationFlag} sx={{outerWidth:'50%', m:'auto'}}></RadioButtonsGroup>}
+          <Button onClick={formik.handleSubmit} color="primary" variant="contained" sx={{width:100, m:'auto'}}>Submit</Button>
         </Box>
       </form>}
     </>
