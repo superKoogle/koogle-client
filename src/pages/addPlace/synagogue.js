@@ -8,7 +8,7 @@ import * as yup from 'yup';
 import Picture from '../upload/picture';
 import { Card } from '@mui/material';
 
-const Synagogue = () => {
+const Synagogue = ({setStatus}) => {
     const [picture, setPicture] = React.useState("");
     const { token, currentUser } = React.useContext(AuthContext);
     const validationSchema = yup.object({
@@ -33,7 +33,8 @@ const Synagogue = () => {
             console.log('in submit');
             console.log(values);
             const place = { ...values, type, userId, image: picture };
-            await addPlace(place, token);
+            const status = await addPlace(place, token);
+            setStatus(status);
         }
     });
 
@@ -77,7 +78,7 @@ const Synagogue = () => {
                             />
                         </Grid>
                         <Grid xs={4} item>
-                            <FormControl sx={{width:'100%', padding:'16px 0px 0px 16px'}}>
+                            <FormControl sx={{width:'80%', padding:'16px 0px 0px 16px'}}>
                                 <InputLabel id="_nusach">nusach</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-label"
@@ -96,9 +97,9 @@ const Synagogue = () => {
                             </FormControl>
                         </Grid>
                         <Grid xs={4} item>
-                            <Picture picture={picture} setPicture={setPicture} />
+                            <Picture sx={{width:'80%'}} picture={picture} setPicture={setPicture} />
                         </Grid>
-                        <Grid xs={4} item><div>aaa</div></Grid>
+                        <Grid xs={4} item><div></div></Grid>
                         <Grid item xs={12} justifyContent='center' >
                             <CustomizedButton onClick={formik.handleSubmit} text='Submit' />
                         </Grid>

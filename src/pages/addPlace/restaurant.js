@@ -8,7 +8,7 @@ import Rating from '@mui/material/Rating';
 import * as yup from 'yup';
 import Picture from '../upload/picture';
 
-const Restaurant = () => {
+const Restaurant = ({setStatus}) => {
   const [picture,setPicture] = React.useState("");
   const { token, currentUser } = React.useContext(AuthContext);
   const validationSchema = yup.object({
@@ -42,7 +42,8 @@ const Restaurant = () => {
       //console.log('in submit');
       //console.log(values);
       const place = { ...values, type, userId, image:picture };
-      await addPlace(place, token);
+      const status = await addPlace(place, token);
+      setStatus(status);
     }
   });
 

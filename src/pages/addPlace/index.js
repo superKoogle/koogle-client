@@ -8,10 +8,12 @@ import {Box, Tab} from '@mui/material';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
+import Messsage from '../../components/Message';
 
 
 export default function AddPlace() {
     const [type, setType] = useState();
+    const [status, setStatus] = useState(null);
     const handleChange = (event, newValue) => {
         setType(newValue);
       };
@@ -31,10 +33,10 @@ export default function AddPlace() {
             <Tab label="Restaurant" value="4" />
           </TabList>
         </Box>
-        <TabPanel value="1"><Synagogue/></TabPanel>
-        <TabPanel value="2"><BeitHabad/></TabPanel>
-        <TabPanel value="3"><Supermarket/></TabPanel>
-        <TabPanel value="4"><Restaurant/></TabPanel>
+        <TabPanel value="1">{status?<Messsage status={status}/>:<Synagogue setStatus={setStatus}/>}</TabPanel>
+        <TabPanel value="2">{status?<Messsage status={status}/>:<BeitHabad setStatus={setStatus}/>}</TabPanel>
+        <TabPanel value="3">{status?<Messsage status={status}/>:<Supermarket setStatus={setStatus}/>}</TabPanel>
+        <TabPanel value="4">{status?<Messsage status={status}/>:<Restaurant setStatus={setStatus}/>}</TabPanel>
       </TabContext>
     </Box>
         </>

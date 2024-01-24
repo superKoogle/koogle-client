@@ -8,7 +8,7 @@ import * as yup from 'yup';
 import {Card} from '@mui/material';
 import Picture from '../upload/picture';
 
-const Supermarket = () => {
+const Supermarket = ({setStatus}) => {
   const [picture,setPicture] = React.useState("");
   const { token, currentUser } = React.useContext(AuthContext);
   const validationSchema = yup.object({
@@ -35,7 +35,9 @@ const Supermarket = () => {
       console.log('in submit');
       console.log(values);
       const place = { ...values, type, userId , image:picture };
-      await addPlace(place, token);
+      const status = await addPlace(place, token);
+      setStatus(status);
+
     }
   });
 

@@ -8,9 +8,10 @@ import * as yup from 'yup';
 import Picture from '../upload/picture';
 import { Card } from '@mui/material';
 
-const BeitHabad = () => {
+const BeitHabad = ({setStatus}) => {
   const [picture, setPicture] = React.useState("");
   const { token, currentUser } = React.useContext(AuthContext);
+
   const validationSchema = yup.object({
     name: yup.string().required('name of Beit Habad'),
     address: yup.string().required('address of the Beit Habad'),
@@ -37,7 +38,10 @@ const BeitHabad = () => {
       //console.log('in submit');
       //console.log(values);
       const place = { ...values, type, userId, image: picture };
-      await addPlace(place, token);
+      const status = await addPlace(place, token);
+      console.log(status);
+      setStatus(status);
+
     }
   });
 

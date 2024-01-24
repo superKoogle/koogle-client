@@ -34,7 +34,7 @@ const Uploader = ({ file, setFile, label }) => {
   }
   return (
     <>
-      {!selectFile && <Button variant="outlined" component="label" sx={{height:55, width:'100%'}}>{label ? label : "File  "} &nbsp;<FileUploadOutlinedIcon />
+      {!selectFile && <Button variant="outlined" component="label" sx={{height:'80%', width:'80%'}}>{label ? label : "File  "} &nbsp;<FileUploadOutlinedIcon />
         <input type="file" onChange={onSelectFile} id="file" hidden />
       </Button>}
       {selectFile && <Chip variant="outlined" color="primary" onDelete={() => { setSelectFile(null) }} icon={<ImageOutlinedIcon />} label={selectFile.name} />}
