@@ -27,7 +27,7 @@ const Home = () => {
   }
 
   useEffect(() => { getLocation() }, [])
-  var WelcomeText = "Welcome to the Google site!Here you can get to know your surroundings in a convenient and fast way.by entering your location, kosher places near you will be displayed such as: restaurants, supermarkets, synagogues and more"
+  var WelcomeText = "Welcome to the Koogle! Here you can get to know your surroundings in a convenient and fast way.\nby entering your location, kosher places near you will be displayed such as: restaurants, supermarkets, synagogues and more"
   return (
     <Box sx={{ padding: 6 }}>
       <TypographyP text={WelcomeText} />

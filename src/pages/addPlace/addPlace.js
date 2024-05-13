@@ -2,6 +2,7 @@ export default async function addPlace(place, token) {
   let placeToSend = {};
   try {
     placeToSend = parsePlaceToSend(place);
+    console.log(placeToSend);
   }
   catch {
     console.log('not all parameters were provided');

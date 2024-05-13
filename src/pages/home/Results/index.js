@@ -40,7 +40,7 @@ export default function Results({ location, range,results, setResults }) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        {results.length > 0 ? results.filter(place=>place.distance<=range).slice(0,5)
+        {results.length > 0 ? results.sort((a, b)=>a.distance-b.distance).filter(place=>place.distance<=range).slice(0,5)
         .map((place, i) => {   
            return <Grid item xs={6} key={i}>
               <SinglePlace name={place.place_name} address={place.place_address} hours={place.place_hours} img={place.place_img} type={place.type} id={i} setSelected={setSelected} />

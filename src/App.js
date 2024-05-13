@@ -23,11 +23,8 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
       <AuthContextProvider>
-        {/* <AnotherNav></AnotherNav> */}
         <Router>
-          {/* <Box sx={{minHeight:"100vh",display:"flex", flexGrow:1,flexFlow:"column"}}> */}
             <Nav />
-            {/* <Box sx={{display:"flex", flexGrow:1}} > */}
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/login" element={<Login />} />
@@ -36,8 +33,6 @@ function App() {
                   <Route path="/host" element={<HostorStay/>} />
                   <Route path="/manage" element={<Manager/>}/>
               </Routes>
-            {/* </Box > */}
-            {/* </Box > */}
         </Router>
       </AuthContextProvider>
       </ThemeProvider>

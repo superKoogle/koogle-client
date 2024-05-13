@@ -70,11 +70,11 @@ export default function WrongDataDialog({placeId}) {
       <CustomizedButton text={"Wrong data? let us know"} onClick={handleClickOpen}/>
       {notLoggedIn && <InfoAlert message={"Please sign in to use this service."} action={setNotLoggedIn} severity="info"></InfoAlert>}
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>Report wrong data</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
+            To report about wrong data you have found about this site, please enter the wrong field and some information tou know. We
+            will do our best to correct it soon.
           </DialogContentText>
       <ReportToFill wrongField={wrongField} setWrongField={setWrongField} setText={setText}></ReportToFill>
         </DialogContent>
