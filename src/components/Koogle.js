@@ -7,7 +7,7 @@ import React from 'react';
 const Koogle = () => {
   return (
     <>
-        <AvatarGroup max={6} sx={{marginTop:'10px'}}>
+          <AvatarGroup max={6} sx={{marginTop:'10px'}}>
           <Avatar sx={{ bgcolor: indigo[700] }}>k</Avatar>
           <Avatar sx={{ bgcolor: '#fffef4' , color:indigo[700]}}><ShareLocationIcon></ShareLocationIcon></Avatar>
           <Avatar sx={{ bgcolor: '#fffef4', color:indigo[700] }}><ShareLocationIcon></ShareLocationIcon></Avatar>
@@ -15,6 +15,7 @@ const Koogle = () => {
           <Avatar sx={{ bgcolor: indigo[700] }}>l</Avatar>
           <Avatar sx={{ bgcolor: indigo[700] }}>e</Avatar>
         </AvatarGroup>
+
      </>
   )
 }

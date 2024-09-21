@@ -8,7 +8,7 @@ import FormControl from '@mui/material/FormControl';
 
 export default function RadioButtonsGroup({flag,validFlag}) {
     return (
-      <FormControl>
+      <FormControl sx={{margin: 'auto'}}>
         <RadioGroup
           aria-labelledby="demo-radio-buttons-group-label"
           defaultValue="female"
